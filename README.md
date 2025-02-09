@@ -7,7 +7,7 @@ Este repositório contém as minhas resoluções, das atividades semanais, propo
 
 ## Autor
 
-<img src="https://link-to-image.com/image.jpg" alt="Description" width="300" height="200">
+<img src="https://github.com/Lopes650/PL2025-A104440/blob/main/Images/Screenshot%202025-02-09%20at%2023.11.13.png?raw=true" alt="Description" width="150" height="150">
 
 
 **Rodrigo Lopes A104440**
