@@ -3,7 +3,9 @@
 ## Descrição
 
 
-Este repositório contém as minhas resoluções, das atividades semanais, propostas pelos docentes da cadeira de Processamento de Linguagem do Curso, do curso de Engenharia Informática, da Universidade do Minho no ano letivo 2024/2025.
+Este repositório reúne as minhas resoluções das atividades semanais propostas pelos docentes da unidade curricular de Processamento de Linguagem, parte integrante do 2 Semestre do 3 ano do curso de Engenharia Informática da Universidade do Minho, no ano letivo 2024/2025.
+
+O objetivo deste repositório é documentar e acompanhar o meu progresso na disciplina, consolidando os conhecimentos adquiridos ao longo do semestre. Cada atividade foi resolvida com base nos conceitos teóricos e práticos abordados nas aulas.
 
 ## Autor
 
