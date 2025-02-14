@@ -21,7 +21,7 @@ A função inicia 4 variáveis:
 -`i` (*Int*): Representa o índice em que o programa se encontra no `texto`, iniciando-se em 0.
 
 A função possui um loop `while` que irá percorrer todo `texto`
-guardando o caracter atual em `char` e caso este seja um dígito (`if char.isdigit()`) será adicionado ao `c_number`, caso contrário, a função vai entrar no `else`. 
+guardando o caracter atual em `char` e, caso este seja um dígito (`if char.isdigit()`), será adicionado ao `c_number`, caso contrário, a função vai entrar no `else`. 
 
 Nesta etapa, a função irá verificar se existe alguma sequência de digítos para ser somada a `soma` (`if c_number:`):
 
@@ -31,22 +31,22 @@ Nesta etapa, a função irá verificar se existe alguma sequência de digítos p
 -Caso não exista:
 A função irá verificar se o char corresponde ao '='(`if char == '='`) ou, se estamos perante uma sequência "on"(`elif texto[i:i+2].lower() == "on"`) ou "off"(`texto[i:i+3].lower() == "off"`). Para cada um destes casos a função irá proceder como descrito no Objetivo.
 
-Saindo do `while`, a função irá verificar se existe alguma sequência de dígitos `c_number` a ser somada, realizando a soma caso exista, finalizando.
+Saindo do `while`, a função irá verificar se existe alguma sequência de dígitos `c_number` a ser somada, realizando a soma caso exista, imprimindo o resultado final e finalizando.
 
 ## 4. Saída
-- A função imprime a `soma` sempre que for encontrado um '='.
+- A função imprime a `soma` sempre que for encontrado um '=' e, no final, antes de terminar a execução.
 
 ## 5. Exemplo de Uso
 
 ```python
-somadorOnOff("123 abc On 45 Off 78 on 9 = Off 100 20 = On 30 =")
+somadorOnOff("Hoje, 7 de Fevereiro de 2025, o professor de Processamento de Linguagens deu-nos este trabalho para fazer.=OfF E deu-nos 7= dias para o fazer...On Cada trabalho destes vale 0.25 valores da nota final!")
 ```
 
 **Saída esperada:**
 ```
-177
-177
-207
+2032
+2032
+2057
 ```
 ## 6. Observações
 - O comando `"On"` pode aparecer múltiplas vezes para reativar a soma.

@@ -33,4 +33,10 @@ def somadorOnOff(texto):
     
     if c_number:
         soma += int(c_number)
+        
+    print(soma)
     
+
+texto = "Hoje, 7 de Fevereiro de 2025, o professor de Processamento de Linguagens deu-nos este trabalho para fazer.=OfF E deu-nos 7= dias para o fazer...On Cada trabalho destes vale 0.25 valores da nota final!"
+
+somadorOnOff(texto)
