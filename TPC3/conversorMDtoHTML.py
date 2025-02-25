@@ -6,8 +6,7 @@ def conversorMDtoHTML(filepath):
         texto = file.read()
     
     # Conversão de Cabeçalhos:
-    texto = re.sub(r'^(#+)\s*(.*)', r'<h1>\2</h1>', texto, flags=re.M)
-    
+    texto = re.sub(r'^(#+)\s*(.*)', lambda m: f'<h{len(m.group(1))}>{m.group(2)}</h{len(m.group(1))}>', texto, flags=re.M)
     
     # Conversão de Itálico e Bold:
     texto = re.sub(r'\*\*(.+)\*\*', r'<b>\1<b>', texto, flags=re.M)
@@ -16,7 +15,7 @@ def conversorMDtoHTML(filepath):
     
     # Conversão de Listas Ordenadas:
     texto = re.sub(r'^\d+\.\s+(.+)', r'<li>\1</li>', texto, flags=re.M)
-    texto = re.sub(r'(<li>\d+\..*?</li>(?:\n<li>\d+\..*?</li>)*)', r'<ol>\n\1\n</ol>', texto, flags=re.S)
+    texto = re.sub(r'(<li>.*?</li>(?:\n<li>.*?</li>)*)', r'<ol>\n\1\n</ol>', texto, flags=re.S)
     
     
     #Path para imagem:
@@ -27,9 +26,7 @@ def conversorMDtoHTML(filepath):
     
     file = open("TPC3/teste.html", "w")
     file.write(texto)
-    
-    
-    
+    file.close()
     
 
 conversorMDtoHTML("TPC3/teste.md")

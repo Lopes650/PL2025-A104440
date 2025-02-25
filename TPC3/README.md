@@ -49,7 +49,9 @@ O programa gera um arquivo HTML com a formatação correspondente ao conteúdo o
 ### **Entrada (Markdown):**
 
 ```markdown
-# Exemplo
+# Exemplo 1
+## Exemplo 2
+### Exemplo 3
 
 Este é um **exemplo**
 Este é um *exemplo*
@@ -59,7 +61,7 @@ Este é um *exemplo*
 3. Terceiro item
 4. Quarto item
 5. Quinto item
-   
+
 Como pode ser consultado em [página da UC](http://www.uc.pt)
 
 1. Primeiro item
@@ -72,22 +74,28 @@ Como se vê na imagem seguinte: ![imagem dum coelho](http://www.coellho.com)
 ### **Saída (HTML)**:
 
 ```html
-<h1>Exemplo</h1>
+<h1>Exemplo 1</h1>
+<h2>Exemplo 2</h2>
+<h3>Exemplo 3</h3>
 
 Este é um <b>exemplo<b>
 Este é um <i>exemplo<i>
 
+<ol>
 <li>Primeiro item</li>
 <li>Segundo item</li>
 <li>Terceiro item</li>
 <li>Quarto item</li>
 <li>Quinto item</li>
+</ol>
 
 Como pode ser consultado em <a href="http://www.uc.pt">página da UC</a>
 
+<ol>
 <li>Primeiro item</li>
 <li>Segundo item</li>
 <li>Terceiro item</li>
+</ol>
 
 Como se vê na imagem seguinte: <img src="http://www.coellho.com" alt="imagem dum coelho">
 ```
