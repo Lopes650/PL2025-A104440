@@ -7,7 +7,7 @@ TOKEN_PATTERNS = [
     (r'\bLIMIT\b', 'LIMIT'),
     (r'\?[a-zA-Z_][a-zA-Z0-9_]*', 'VAR'),  # Variáveis (ex: ?nome, ?desc)
     (r'[a-zA-Z_][a-zA-Z0-9_-]*:', 'PREFIX'),  # Prefixos (ex: dbo:, foaf:)
-    (r'\ba\b', 'A'),  # <- **Mover "a" antes de IDENTIFIER**
+    (r'\ba\b', 'A'),  
     (r'[a-zA-Z_][a-zA-Z0-9_-]*', 'IDENTIFIER'),  # Identificadores gerais
     (r'"[^"]*"@[a-zA-Z]+', 'LITERAL'),  # Literais com idioma
     (r'"[^"]*"', 'LITERAL'),  # Literais sem idioma
@@ -21,7 +21,7 @@ TOKEN_PATTERNS = [
 
 
 class LexToken:
-    """Class to represent a token in the required format."""
+    
     def __init__(self, type_, value, line, pos):
         self.type = type_
         self.value = value
