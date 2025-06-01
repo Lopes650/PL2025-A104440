@@ -1,0 +1,4151 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CARET
+    CONST
+    DIVIDEEQUALS
+    FILE
+    FUNCTION
+    GOTO
+    IN
+    LABEL
+    LBRACKETSUB
+    MINUSEQUALS
+    NIL
+    PACKED
+    PLUSEQUALS
+    PROCEDURE
+    RBRACKETSUB
+    RECORD
+    REPEAT
+    SET
+    TIMESEQUALS
+    TYPE
+    UNTIL
+    WITH
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> PROGRAM IDENTIFIER SEMICOLON block PERIOD
+Rule 2     block -> declarations sub_block
+Rule 3     declarations -> VAR var_list
+Rule 4     declarations -> <empty>
+Rule 5     var_list -> var_list decl SEMICOLON
+Rule 6     var_list -> decl SEMICOLON
+Rule 7     decl -> vars COLON type
+Rule 8     decl -> vars COLON array
+Rule 9     vars -> vars COMMA IDENTIFIER
+Rule 10    vars -> IDENTIFIER
+Rule 11    type -> INTEGER
+Rule 12    type -> BOOLEAN
+Rule 13    type -> REAL
+Rule 14    type -> STRING
+Rule 15    type -> CHAR
+Rule 16    array -> ARRAY LBRACKET NUMBER DOUBLEPERIOD NUMBER RBRACKET OF type
+Rule 17    sub_block -> BEGIN statement_list END
+Rule 18    sub_block -> BEGIN END
+Rule 19    statement_list -> statement_list SEMICOLON statement
+Rule 20    statement_list -> statement
+Rule 21    statement -> atribution_statement
+Rule 22    statement -> if_statement
+Rule 23    statement -> while_statement
+Rule 24    statement -> for_statement
+Rule 25    statement -> case_statement
+Rule 26    statement -> procedure_call
+Rule 27    statement -> sub_block
+Rule 28    statement -> <empty>
+Rule 29    atribution_statement -> IDENTIFIER ATRIBUTION expression
+Rule 30    if_statement -> IF expression THEN statement ELSE statement
+Rule 31    if_statement -> IF expression THEN statement
+Rule 32    while_statement -> WHILE expression DO statement
+Rule 33    for_statement -> FOR IDENTIFIER ATRIBUTION expression TO expression DO statement
+Rule 34    for_statement -> FOR IDENTIFIER ATRIBUTION expression DOWNTO expression DO statement
+Rule 35    case_statement -> CASE expression OF case_list END
+Rule 36    case_list -> case_list SEMICOLON case_item
+Rule 37    case_list -> case_item
+Rule 38    case_item -> constant COLON statement
+Rule 39    procedure_call -> PROCEDURE_NAME LPAREN expr_list RPAREN
+Rule 40    procedure_call -> IDENTIFIER LPAREN expr_list RPAREN
+Rule 41    function_call -> FUNCTION_NAME LPAREN expr_list RPAREN
+Rule 42    function_call -> IDENTIFIER LPAREN expr_list RPAREN
+Rule 43    expr_list -> expr_list COMMA expression
+Rule 44    expr_list -> expression
+Rule 45    expr_list -> <empty>
+Rule 46    expression -> expression PLUS expression
+Rule 47    expression -> expression MINUS expression
+Rule 48    expression -> expression TIMES expression
+Rule 49    expression -> expression DIVIDE expression
+Rule 50    expression -> expression DIV expression
+Rule 51    expression -> expression MOD expression
+Rule 52    expression -> expression EQUALS expression
+Rule 53    expression -> expression LESSTHAN expression
+Rule 54    expression -> expression GREATERTHAN expression
+Rule 55    expression -> expression LESSEQUALS expression
+Rule 56    expression -> expression GREATEQUALS expression
+Rule 57    expression -> expression LESSGREAT expression
+Rule 58    expression -> expression AND expression
+Rule 59    expression -> expression OR expression
+Rule 60    expression -> NOT expression
+Rule 61    expression -> LPAREN expression RPAREN
+Rule 62    expression -> factor
+Rule 63    factor -> NUMBER
+Rule 64    factor -> BOOLEAN_LITERAL
+Rule 65    factor -> IDENTIFIER
+Rule 66    factor -> IDENTIFIER LBRACKET expression RBRACKET
+Rule 67    factor -> CHAR_LITERAL
+Rule 68    factor -> STRING_LITERAL
+Rule 69    factor -> function_call
+Rule 70    constant -> NUMBER
+Rule 71    constant -> BOOLEAN_LITERAL
+Rule 72    constant -> IDENTIFIER
+Rule 73    constant -> CHAR_LITERAL
+Rule 74    constant -> STRING_LITERAL
+
+Terminals, with rules where they appear
+
+AND                  : 58
+ARRAY                : 16
+ATRIBUTION           : 29 33 34
+BEGIN                : 17 18
+BOOLEAN              : 12
+BOOLEAN_LITERAL      : 64 71
+CARET                : 
+CASE                 : 35
+CHAR                 : 15
+CHAR_LITERAL         : 67 73
+COLON                : 7 8 38
+COMMA                : 9 43
+CONST                : 
+DIV                  : 50
+DIVIDE               : 49
+DIVIDEEQUALS         : 
+DO                   : 32 33 34
+DOUBLEPERIOD         : 16
+DOWNTO               : 34
+ELSE                 : 30
+END                  : 17 18 35
+EQUALS               : 52
+FILE                 : 
+FOR                  : 33 34
+FUNCTION             : 
+FUNCTION_NAME        : 41
+GOTO                 : 
+GREATEQUALS          : 56
+GREATERTHAN          : 54
+IDENTIFIER           : 1 9 10 29 33 34 40 42 65 66 72
+IF                   : 30 31
+IN                   : 
+INTEGER              : 11
+LABEL                : 
+LBRACKET             : 16 66
+LBRACKETSUB          : 
+LESSEQUALS           : 55
+LESSGREAT            : 57
+LESSTHAN             : 53
+LPAREN               : 39 40 41 42 61
+MINUS                : 47
+MINUSEQUALS          : 
+MOD                  : 51
+NIL                  : 
+NOT                  : 60
+NUMBER               : 16 16 63 70
+OF                   : 16 35
+OR                   : 59
+PACKED               : 
+PERIOD               : 1
+PLUS                 : 46
+PLUSEQUALS           : 
+PROCEDURE            : 
+PROCEDURE_NAME       : 39
+PROGRAM              : 1
+RBRACKET             : 16 66
+RBRACKETSUB          : 
+REAL                 : 13
+RECORD               : 
+REPEAT               : 
+RPAREN               : 39 40 41 42 61
+SEMICOLON            : 1 5 6 19 36
+SET                  : 
+STRING               : 14
+STRING_LITERAL       : 68 74
+THEN                 : 30 31
+TIMES                : 48
+TIMESEQUALS          : 
+TO                   : 33
+TYPE                 : 
+UNTIL                : 
+VAR                  : 3
+WHILE                : 32
+WITH                 : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+array                : 8
+atribution_statement : 21
+block                : 1
+case_item            : 36 37
+case_list            : 35 36
+case_statement       : 25
+constant             : 38
+decl                 : 5 6
+declarations         : 2
+expr_list            : 39 40 41 42 43
+expression           : 29 30 31 32 33 33 34 34 35 43 44 46 46 47 47 48 48 49 49 50 50 51 51 52 52 53 53 54 54 55 55 56 56 57 57 58 58 59 59 60 61 66
+factor               : 62
+for_statement        : 24
+function_call        : 69
+if_statement         : 22
+procedure_call       : 26
+program              : 0
+statement            : 19 20 30 30 31 32 33 34 38
+statement_list       : 17 19
+sub_block            : 2 27
+type                 : 7 16
+var_list             : 3 5
+vars                 : 7 8 9
+while_statement      : 23
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . PROGRAM IDENTIFIER SEMICOLON block PERIOD
+
+    PROGRAM         shift and go to state 2
+
+    program                        shift and go to state 1
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> PROGRAM . IDENTIFIER SEMICOLON block PERIOD
+
+    IDENTIFIER      shift and go to state 3
+
+
+state 3
+
+    (1) program -> PROGRAM IDENTIFIER . SEMICOLON block PERIOD
+
+    SEMICOLON       shift and go to state 4
+
+
+state 4
+
+    (1) program -> PROGRAM IDENTIFIER SEMICOLON . block PERIOD
+    (2) block -> . declarations sub_block
+    (3) declarations -> . VAR var_list
+    (4) declarations -> .
+
+    VAR             shift and go to state 7
+    BEGIN           reduce using rule 4 (declarations -> .)
+
+    block                          shift and go to state 5
+    declarations                   shift and go to state 6
+
+state 5
+
+    (1) program -> PROGRAM IDENTIFIER SEMICOLON block . PERIOD
+
+    PERIOD          shift and go to state 8
+
+
+state 6
+
+    (2) block -> declarations . sub_block
+    (17) sub_block -> . BEGIN statement_list END
+    (18) sub_block -> . BEGIN END
+
+    BEGIN           shift and go to state 10
+
+    sub_block                      shift and go to state 9
+
+state 7
+
+    (3) declarations -> VAR . var_list
+    (5) var_list -> . var_list decl SEMICOLON
+    (6) var_list -> . decl SEMICOLON
+    (7) decl -> . vars COLON type
+    (8) decl -> . vars COLON array
+    (9) vars -> . vars COMMA IDENTIFIER
+    (10) vars -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 14
+
+    var_list                       shift and go to state 11
+    decl                           shift and go to state 12
+    vars                           shift and go to state 13
+
+state 8
+
+    (1) program -> PROGRAM IDENTIFIER SEMICOLON block PERIOD .
+
+    $end            reduce using rule 1 (program -> PROGRAM IDENTIFIER SEMICOLON block PERIOD .)
+
+
+state 9
+
+    (2) block -> declarations sub_block .
+
+    PERIOD          reduce using rule 2 (block -> declarations sub_block .)
+
+
+state 10
+
+    (17) sub_block -> BEGIN . statement_list END
+    (18) sub_block -> BEGIN . END
+    (19) statement_list -> . statement_list SEMICOLON statement
+    (20) statement_list -> . statement
+    (21) statement -> . atribution_statement
+    (22) statement -> . if_statement
+    (23) statement -> . while_statement
+    (24) statement -> . for_statement
+    (25) statement -> . case_statement
+    (26) statement -> . procedure_call
+    (27) statement -> . sub_block
+    (28) statement -> .
+    (29) atribution_statement -> . IDENTIFIER ATRIBUTION expression
+    (30) if_statement -> . IF expression THEN statement ELSE statement
+    (31) if_statement -> . IF expression THEN statement
+    (32) while_statement -> . WHILE expression DO statement
+    (33) for_statement -> . FOR IDENTIFIER ATRIBUTION expression TO expression DO statement
+    (34) for_statement -> . FOR IDENTIFIER ATRIBUTION expression DOWNTO expression DO statement
+    (35) case_statement -> . CASE expression OF case_list END
+    (39) procedure_call -> . PROCEDURE_NAME LPAREN expr_list RPAREN
+    (40) procedure_call -> . IDENTIFIER LPAREN expr_list RPAREN
+    (17) sub_block -> . BEGIN statement_list END
+    (18) sub_block -> . BEGIN END
+
+  ! shift/reduce conflict for END resolved as shift
+    END             shift and go to state 16
+    SEMICOLON       reduce using rule 28 (statement -> .)
+    IDENTIFIER      shift and go to state 25
+    IF              shift and go to state 26
+    WHILE           shift and go to state 27
+    FOR             shift and go to state 28
+    CASE            shift and go to state 29
+    PROCEDURE_NAME  shift and go to state 30
+    BEGIN           shift and go to state 10
+
+  ! END             [ reduce using rule 28 (statement -> .) ]
+
+    statement_list                 shift and go to state 15
+    statement                      shift and go to state 17
+    atribution_statement           shift and go to state 18
+    if_statement                   shift and go to state 19
+    while_statement                shift and go to state 20
+    for_statement                  shift and go to state 21
+    case_statement                 shift and go to state 22
+    procedure_call                 shift and go to state 23
+    sub_block                      shift and go to state 24
+
+state 11
+
+    (3) declarations -> VAR var_list .
+    (5) var_list -> var_list . decl SEMICOLON
+    (7) decl -> . vars COLON type
+    (8) decl -> . vars COLON array
+    (9) vars -> . vars COMMA IDENTIFIER
+    (10) vars -> . IDENTIFIER
+
+    BEGIN           reduce using rule 3 (declarations -> VAR var_list .)
+    IDENTIFIER      shift and go to state 14
+
+    decl                           shift and go to state 31
+    vars                           shift and go to state 13
+
+state 12
+
+    (6) var_list -> decl . SEMICOLON
+
+    SEMICOLON       shift and go to state 32
+
+
+state 13
+
+    (7) decl -> vars . COLON type
+    (8) decl -> vars . COLON array
+    (9) vars -> vars . COMMA IDENTIFIER
+
+    COLON           shift and go to state 33
+    COMMA           shift and go to state 34
+
+
+state 14
+
+    (10) vars -> IDENTIFIER .
+
+    COLON           reduce using rule 10 (vars -> IDENTIFIER .)
+    COMMA           reduce using rule 10 (vars -> IDENTIFIER .)
+
+
+state 15
+
+    (17) sub_block -> BEGIN statement_list . END
+    (19) statement_list -> statement_list . SEMICOLON statement
+
+    END             shift and go to state 35
+    SEMICOLON       shift and go to state 36
+
+
+state 16
+
+    (18) sub_block -> BEGIN END .
+
+    PERIOD          reduce using rule 18 (sub_block -> BEGIN END .)
+    END             reduce using rule 18 (sub_block -> BEGIN END .)
+    SEMICOLON       reduce using rule 18 (sub_block -> BEGIN END .)
+    ELSE            reduce using rule 18 (sub_block -> BEGIN END .)
+
+
+state 17
+
+    (20) statement_list -> statement .
+
+    END             reduce using rule 20 (statement_list -> statement .)
+    SEMICOLON       reduce using rule 20 (statement_list -> statement .)
+
+
+state 18
+
+    (21) statement -> atribution_statement .
+
+    END             reduce using rule 21 (statement -> atribution_statement .)
+    SEMICOLON       reduce using rule 21 (statement -> atribution_statement .)
+    ELSE            reduce using rule 21 (statement -> atribution_statement .)
+
+
+state 19
+
+    (22) statement -> if_statement .
+
+    END             reduce using rule 22 (statement -> if_statement .)
+    SEMICOLON       reduce using rule 22 (statement -> if_statement .)
+    ELSE            reduce using rule 22 (statement -> if_statement .)
+
+
+state 20
+
+    (23) statement -> while_statement .
+
+    END             reduce using rule 23 (statement -> while_statement .)
+    SEMICOLON       reduce using rule 23 (statement -> while_statement .)
+    ELSE            reduce using rule 23 (statement -> while_statement .)
+
+
+state 21
+
+    (24) statement -> for_statement .
+
+    END             reduce using rule 24 (statement -> for_statement .)
+    SEMICOLON       reduce using rule 24 (statement -> for_statement .)
+    ELSE            reduce using rule 24 (statement -> for_statement .)
+
+
+state 22
+
+    (25) statement -> case_statement .
+
+    END             reduce using rule 25 (statement -> case_statement .)
+    SEMICOLON       reduce using rule 25 (statement -> case_statement .)
+    ELSE            reduce using rule 25 (statement -> case_statement .)
+
+
+state 23
+
+    (26) statement -> procedure_call .
+
+    END             reduce using rule 26 (statement -> procedure_call .)
+    SEMICOLON       reduce using rule 26 (statement -> procedure_call .)
+    ELSE            reduce using rule 26 (statement -> procedure_call .)
+
+
+state 24
+
+    (27) statement -> sub_block .
+
+    END             reduce using rule 27 (statement -> sub_block .)
+    SEMICOLON       reduce using rule 27 (statement -> sub_block .)
+    ELSE            reduce using rule 27 (statement -> sub_block .)
+
+
+state 25
+
+    (29) atribution_statement -> IDENTIFIER . ATRIBUTION expression
+    (40) procedure_call -> IDENTIFIER . LPAREN expr_list RPAREN
+
+    ATRIBUTION      shift and go to state 37
+    LPAREN          shift and go to state 38
+
+
+state 26
+
+    (30) if_statement -> IF . expression THEN statement ELSE statement
+    (31) if_statement -> IF . expression THEN statement
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 39
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 27
+
+    (32) while_statement -> WHILE . expression DO statement
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 50
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 28
+
+    (33) for_statement -> FOR . IDENTIFIER ATRIBUTION expression TO expression DO statement
+    (34) for_statement -> FOR . IDENTIFIER ATRIBUTION expression DOWNTO expression DO statement
+
+    IDENTIFIER      shift and go to state 51
+
+
+state 29
+
+    (35) case_statement -> CASE . expression OF case_list END
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 52
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 30
+
+    (39) procedure_call -> PROCEDURE_NAME . LPAREN expr_list RPAREN
+
+    LPAREN          shift and go to state 53
+
+
+state 31
+
+    (5) var_list -> var_list decl . SEMICOLON
+
+    SEMICOLON       shift and go to state 54
+
+
+state 32
+
+    (6) var_list -> decl SEMICOLON .
+
+    IDENTIFIER      reduce using rule 6 (var_list -> decl SEMICOLON .)
+    BEGIN           reduce using rule 6 (var_list -> decl SEMICOLON .)
+
+
+state 33
+
+    (7) decl -> vars COLON . type
+    (8) decl -> vars COLON . array
+    (11) type -> . INTEGER
+    (12) type -> . BOOLEAN
+    (13) type -> . REAL
+    (14) type -> . STRING
+    (15) type -> . CHAR
+    (16) array -> . ARRAY LBRACKET NUMBER DOUBLEPERIOD NUMBER RBRACKET OF type
+
+    INTEGER         shift and go to state 57
+    BOOLEAN         shift and go to state 58
+    REAL            shift and go to state 59
+    STRING          shift and go to state 60
+    CHAR            shift and go to state 61
+    ARRAY           shift and go to state 62
+
+    type                           shift and go to state 55
+    array                          shift and go to state 56
+
+state 34
+
+    (9) vars -> vars COMMA . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 63
+
+
+state 35
+
+    (17) sub_block -> BEGIN statement_list END .
+
+    PERIOD          reduce using rule 17 (sub_block -> BEGIN statement_list END .)
+    END             reduce using rule 17 (sub_block -> BEGIN statement_list END .)
+    SEMICOLON       reduce using rule 17 (sub_block -> BEGIN statement_list END .)
+    ELSE            reduce using rule 17 (sub_block -> BEGIN statement_list END .)
+
+
+state 36
+
+    (19) statement_list -> statement_list SEMICOLON . statement
+    (21) statement -> . atribution_statement
+    (22) statement -> . if_statement
+    (23) statement -> . while_statement
+    (24) statement -> . for_statement
+    (25) statement -> . case_statement
+    (26) statement -> . procedure_call
+    (27) statement -> . sub_block
+    (28) statement -> .
+    (29) atribution_statement -> . IDENTIFIER ATRIBUTION expression
+    (30) if_statement -> . IF expression THEN statement ELSE statement
+    (31) if_statement -> . IF expression THEN statement
+    (32) while_statement -> . WHILE expression DO statement
+    (33) for_statement -> . FOR IDENTIFIER ATRIBUTION expression TO expression DO statement
+    (34) for_statement -> . FOR IDENTIFIER ATRIBUTION expression DOWNTO expression DO statement
+    (35) case_statement -> . CASE expression OF case_list END
+    (39) procedure_call -> . PROCEDURE_NAME LPAREN expr_list RPAREN
+    (40) procedure_call -> . IDENTIFIER LPAREN expr_list RPAREN
+    (17) sub_block -> . BEGIN statement_list END
+    (18) sub_block -> . BEGIN END
+
+    END             reduce using rule 28 (statement -> .)
+    SEMICOLON       reduce using rule 28 (statement -> .)
+    IDENTIFIER      shift and go to state 25
+    IF              shift and go to state 26
+    WHILE           shift and go to state 27
+    FOR             shift and go to state 28
+    CASE            shift and go to state 29
+    PROCEDURE_NAME  shift and go to state 30
+    BEGIN           shift and go to state 10
+
+    statement                      shift and go to state 64
+    atribution_statement           shift and go to state 18
+    if_statement                   shift and go to state 19
+    while_statement                shift and go to state 20
+    for_statement                  shift and go to state 21
+    case_statement                 shift and go to state 22
+    procedure_call                 shift and go to state 23
+    sub_block                      shift and go to state 24
+
+state 37
+
+    (29) atribution_statement -> IDENTIFIER ATRIBUTION . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 65
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 38
+
+    (40) procedure_call -> IDENTIFIER LPAREN . expr_list RPAREN
+    (43) expr_list -> . expr_list COMMA expression
+    (44) expr_list -> . expression
+    (45) expr_list -> .
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    RPAREN          reduce using rule 45 (expr_list -> .)
+    COMMA           reduce using rule 45 (expr_list -> .)
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expr_list                      shift and go to state 66
+    expression                     shift and go to state 67
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 39
+
+    (30) if_statement -> IF expression . THEN statement ELSE statement
+    (31) if_statement -> IF expression . THEN statement
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    THEN            shift and go to state 68
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+    EQUALS          shift and go to state 75
+    LESSTHAN        shift and go to state 76
+    GREATERTHAN     shift and go to state 77
+    LESSEQUALS      shift and go to state 78
+    GREATEQUALS     shift and go to state 79
+    LESSGREAT       shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+
+
+state 40
+
+    (60) expression -> NOT . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 83
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 41
+
+    (61) expression -> LPAREN . expression RPAREN
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 84
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 42
+
+    (62) expression -> factor .
+
+    THEN            reduce using rule 62 (expression -> factor .)
+    PLUS            reduce using rule 62 (expression -> factor .)
+    MINUS           reduce using rule 62 (expression -> factor .)
+    TIMES           reduce using rule 62 (expression -> factor .)
+    DIVIDE          reduce using rule 62 (expression -> factor .)
+    DIV             reduce using rule 62 (expression -> factor .)
+    MOD             reduce using rule 62 (expression -> factor .)
+    EQUALS          reduce using rule 62 (expression -> factor .)
+    LESSTHAN        reduce using rule 62 (expression -> factor .)
+    GREATERTHAN     reduce using rule 62 (expression -> factor .)
+    LESSEQUALS      reduce using rule 62 (expression -> factor .)
+    GREATEQUALS     reduce using rule 62 (expression -> factor .)
+    LESSGREAT       reduce using rule 62 (expression -> factor .)
+    AND             reduce using rule 62 (expression -> factor .)
+    OR              reduce using rule 62 (expression -> factor .)
+    DO              reduce using rule 62 (expression -> factor .)
+    OF              reduce using rule 62 (expression -> factor .)
+    END             reduce using rule 62 (expression -> factor .)
+    SEMICOLON       reduce using rule 62 (expression -> factor .)
+    ELSE            reduce using rule 62 (expression -> factor .)
+    RPAREN          reduce using rule 62 (expression -> factor .)
+    COMMA           reduce using rule 62 (expression -> factor .)
+    RBRACKET        reduce using rule 62 (expression -> factor .)
+    TO              reduce using rule 62 (expression -> factor .)
+    DOWNTO          reduce using rule 62 (expression -> factor .)
+
+
+state 43
+
+    (63) factor -> NUMBER .
+
+    THEN            reduce using rule 63 (factor -> NUMBER .)
+    PLUS            reduce using rule 63 (factor -> NUMBER .)
+    MINUS           reduce using rule 63 (factor -> NUMBER .)
+    TIMES           reduce using rule 63 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 63 (factor -> NUMBER .)
+    DIV             reduce using rule 63 (factor -> NUMBER .)
+    MOD             reduce using rule 63 (factor -> NUMBER .)
+    EQUALS          reduce using rule 63 (factor -> NUMBER .)
+    LESSTHAN        reduce using rule 63 (factor -> NUMBER .)
+    GREATERTHAN     reduce using rule 63 (factor -> NUMBER .)
+    LESSEQUALS      reduce using rule 63 (factor -> NUMBER .)
+    GREATEQUALS     reduce using rule 63 (factor -> NUMBER .)
+    LESSGREAT       reduce using rule 63 (factor -> NUMBER .)
+    AND             reduce using rule 63 (factor -> NUMBER .)
+    OR              reduce using rule 63 (factor -> NUMBER .)
+    DO              reduce using rule 63 (factor -> NUMBER .)
+    OF              reduce using rule 63 (factor -> NUMBER .)
+    END             reduce using rule 63 (factor -> NUMBER .)
+    SEMICOLON       reduce using rule 63 (factor -> NUMBER .)
+    ELSE            reduce using rule 63 (factor -> NUMBER .)
+    RPAREN          reduce using rule 63 (factor -> NUMBER .)
+    COMMA           reduce using rule 63 (factor -> NUMBER .)
+    RBRACKET        reduce using rule 63 (factor -> NUMBER .)
+    TO              reduce using rule 63 (factor -> NUMBER .)
+    DOWNTO          reduce using rule 63 (factor -> NUMBER .)
+
+
+state 44
+
+    (64) factor -> BOOLEAN_LITERAL .
+
+    THEN            reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    PLUS            reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    MINUS           reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    TIMES           reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    DIVIDE          reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    DIV             reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    MOD             reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    EQUALS          reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    LESSTHAN        reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    GREATERTHAN     reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    LESSEQUALS      reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    GREATEQUALS     reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    LESSGREAT       reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    AND             reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    OR              reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    DO              reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    OF              reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    END             reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    SEMICOLON       reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    ELSE            reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    RPAREN          reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    COMMA           reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    RBRACKET        reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    TO              reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+    DOWNTO          reduce using rule 64 (factor -> BOOLEAN_LITERAL .)
+
+
+state 45
+
+    (65) factor -> IDENTIFIER .
+    (66) factor -> IDENTIFIER . LBRACKET expression RBRACKET
+    (42) function_call -> IDENTIFIER . LPAREN expr_list RPAREN
+
+    THEN            reduce using rule 65 (factor -> IDENTIFIER .)
+    PLUS            reduce using rule 65 (factor -> IDENTIFIER .)
+    MINUS           reduce using rule 65 (factor -> IDENTIFIER .)
+    TIMES           reduce using rule 65 (factor -> IDENTIFIER .)
+    DIVIDE          reduce using rule 65 (factor -> IDENTIFIER .)
+    DIV             reduce using rule 65 (factor -> IDENTIFIER .)
+    MOD             reduce using rule 65 (factor -> IDENTIFIER .)
+    EQUALS          reduce using rule 65 (factor -> IDENTIFIER .)
+    LESSTHAN        reduce using rule 65 (factor -> IDENTIFIER .)
+    GREATERTHAN     reduce using rule 65 (factor -> IDENTIFIER .)
+    LESSEQUALS      reduce using rule 65 (factor -> IDENTIFIER .)
+    GREATEQUALS     reduce using rule 65 (factor -> IDENTIFIER .)
+    LESSGREAT       reduce using rule 65 (factor -> IDENTIFIER .)
+    AND             reduce using rule 65 (factor -> IDENTIFIER .)
+    OR              reduce using rule 65 (factor -> IDENTIFIER .)
+    DO              reduce using rule 65 (factor -> IDENTIFIER .)
+    OF              reduce using rule 65 (factor -> IDENTIFIER .)
+    END             reduce using rule 65 (factor -> IDENTIFIER .)
+    SEMICOLON       reduce using rule 65 (factor -> IDENTIFIER .)
+    ELSE            reduce using rule 65 (factor -> IDENTIFIER .)
+    RPAREN          reduce using rule 65 (factor -> IDENTIFIER .)
+    COMMA           reduce using rule 65 (factor -> IDENTIFIER .)
+    RBRACKET        reduce using rule 65 (factor -> IDENTIFIER .)
+    TO              reduce using rule 65 (factor -> IDENTIFIER .)
+    DOWNTO          reduce using rule 65 (factor -> IDENTIFIER .)
+    LBRACKET        shift and go to state 85
+    LPAREN          shift and go to state 86
+
+
+state 46
+
+    (67) factor -> CHAR_LITERAL .
+
+    THEN            reduce using rule 67 (factor -> CHAR_LITERAL .)
+    PLUS            reduce using rule 67 (factor -> CHAR_LITERAL .)
+    MINUS           reduce using rule 67 (factor -> CHAR_LITERAL .)
+    TIMES           reduce using rule 67 (factor -> CHAR_LITERAL .)
+    DIVIDE          reduce using rule 67 (factor -> CHAR_LITERAL .)
+    DIV             reduce using rule 67 (factor -> CHAR_LITERAL .)
+    MOD             reduce using rule 67 (factor -> CHAR_LITERAL .)
+    EQUALS          reduce using rule 67 (factor -> CHAR_LITERAL .)
+    LESSTHAN        reduce using rule 67 (factor -> CHAR_LITERAL .)
+    GREATERTHAN     reduce using rule 67 (factor -> CHAR_LITERAL .)
+    LESSEQUALS      reduce using rule 67 (factor -> CHAR_LITERAL .)
+    GREATEQUALS     reduce using rule 67 (factor -> CHAR_LITERAL .)
+    LESSGREAT       reduce using rule 67 (factor -> CHAR_LITERAL .)
+    AND             reduce using rule 67 (factor -> CHAR_LITERAL .)
+    OR              reduce using rule 67 (factor -> CHAR_LITERAL .)
+    DO              reduce using rule 67 (factor -> CHAR_LITERAL .)
+    OF              reduce using rule 67 (factor -> CHAR_LITERAL .)
+    END             reduce using rule 67 (factor -> CHAR_LITERAL .)
+    SEMICOLON       reduce using rule 67 (factor -> CHAR_LITERAL .)
+    ELSE            reduce using rule 67 (factor -> CHAR_LITERAL .)
+    RPAREN          reduce using rule 67 (factor -> CHAR_LITERAL .)
+    COMMA           reduce using rule 67 (factor -> CHAR_LITERAL .)
+    RBRACKET        reduce using rule 67 (factor -> CHAR_LITERAL .)
+    TO              reduce using rule 67 (factor -> CHAR_LITERAL .)
+    DOWNTO          reduce using rule 67 (factor -> CHAR_LITERAL .)
+
+
+state 47
+
+    (68) factor -> STRING_LITERAL .
+
+    THEN            reduce using rule 68 (factor -> STRING_LITERAL .)
+    PLUS            reduce using rule 68 (factor -> STRING_LITERAL .)
+    MINUS           reduce using rule 68 (factor -> STRING_LITERAL .)
+    TIMES           reduce using rule 68 (factor -> STRING_LITERAL .)
+    DIVIDE          reduce using rule 68 (factor -> STRING_LITERAL .)
+    DIV             reduce using rule 68 (factor -> STRING_LITERAL .)
+    MOD             reduce using rule 68 (factor -> STRING_LITERAL .)
+    EQUALS          reduce using rule 68 (factor -> STRING_LITERAL .)
+    LESSTHAN        reduce using rule 68 (factor -> STRING_LITERAL .)
+    GREATERTHAN     reduce using rule 68 (factor -> STRING_LITERAL .)
+    LESSEQUALS      reduce using rule 68 (factor -> STRING_LITERAL .)
+    GREATEQUALS     reduce using rule 68 (factor -> STRING_LITERAL .)
+    LESSGREAT       reduce using rule 68 (factor -> STRING_LITERAL .)
+    AND             reduce using rule 68 (factor -> STRING_LITERAL .)
+    OR              reduce using rule 68 (factor -> STRING_LITERAL .)
+    DO              reduce using rule 68 (factor -> STRING_LITERAL .)
+    OF              reduce using rule 68 (factor -> STRING_LITERAL .)
+    END             reduce using rule 68 (factor -> STRING_LITERAL .)
+    SEMICOLON       reduce using rule 68 (factor -> STRING_LITERAL .)
+    ELSE            reduce using rule 68 (factor -> STRING_LITERAL .)
+    RPAREN          reduce using rule 68 (factor -> STRING_LITERAL .)
+    COMMA           reduce using rule 68 (factor -> STRING_LITERAL .)
+    RBRACKET        reduce using rule 68 (factor -> STRING_LITERAL .)
+    TO              reduce using rule 68 (factor -> STRING_LITERAL .)
+    DOWNTO          reduce using rule 68 (factor -> STRING_LITERAL .)
+
+
+state 48
+
+    (69) factor -> function_call .
+
+    THEN            reduce using rule 69 (factor -> function_call .)
+    PLUS            reduce using rule 69 (factor -> function_call .)
+    MINUS           reduce using rule 69 (factor -> function_call .)
+    TIMES           reduce using rule 69 (factor -> function_call .)
+    DIVIDE          reduce using rule 69 (factor -> function_call .)
+    DIV             reduce using rule 69 (factor -> function_call .)
+    MOD             reduce using rule 69 (factor -> function_call .)
+    EQUALS          reduce using rule 69 (factor -> function_call .)
+    LESSTHAN        reduce using rule 69 (factor -> function_call .)
+    GREATERTHAN     reduce using rule 69 (factor -> function_call .)
+    LESSEQUALS      reduce using rule 69 (factor -> function_call .)
+    GREATEQUALS     reduce using rule 69 (factor -> function_call .)
+    LESSGREAT       reduce using rule 69 (factor -> function_call .)
+    AND             reduce using rule 69 (factor -> function_call .)
+    OR              reduce using rule 69 (factor -> function_call .)
+    DO              reduce using rule 69 (factor -> function_call .)
+    OF              reduce using rule 69 (factor -> function_call .)
+    END             reduce using rule 69 (factor -> function_call .)
+    SEMICOLON       reduce using rule 69 (factor -> function_call .)
+    ELSE            reduce using rule 69 (factor -> function_call .)
+    RPAREN          reduce using rule 69 (factor -> function_call .)
+    COMMA           reduce using rule 69 (factor -> function_call .)
+    RBRACKET        reduce using rule 69 (factor -> function_call .)
+    TO              reduce using rule 69 (factor -> function_call .)
+    DOWNTO          reduce using rule 69 (factor -> function_call .)
+
+
+state 49
+
+    (41) function_call -> FUNCTION_NAME . LPAREN expr_list RPAREN
+
+    LPAREN          shift and go to state 87
+
+
+state 50
+
+    (32) while_statement -> WHILE expression . DO statement
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    DO              shift and go to state 88
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+    EQUALS          shift and go to state 75
+    LESSTHAN        shift and go to state 76
+    GREATERTHAN     shift and go to state 77
+    LESSEQUALS      shift and go to state 78
+    GREATEQUALS     shift and go to state 79
+    LESSGREAT       shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+
+
+state 51
+
+    (33) for_statement -> FOR IDENTIFIER . ATRIBUTION expression TO expression DO statement
+    (34) for_statement -> FOR IDENTIFIER . ATRIBUTION expression DOWNTO expression DO statement
+
+    ATRIBUTION      shift and go to state 89
+
+
+state 52
+
+    (35) case_statement -> CASE expression . OF case_list END
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    OF              shift and go to state 90
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+    EQUALS          shift and go to state 75
+    LESSTHAN        shift and go to state 76
+    GREATERTHAN     shift and go to state 77
+    LESSEQUALS      shift and go to state 78
+    GREATEQUALS     shift and go to state 79
+    LESSGREAT       shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+
+
+state 53
+
+    (39) procedure_call -> PROCEDURE_NAME LPAREN . expr_list RPAREN
+    (43) expr_list -> . expr_list COMMA expression
+    (44) expr_list -> . expression
+    (45) expr_list -> .
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    RPAREN          reduce using rule 45 (expr_list -> .)
+    COMMA           reduce using rule 45 (expr_list -> .)
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expr_list                      shift and go to state 91
+    expression                     shift and go to state 67
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 54
+
+    (5) var_list -> var_list decl SEMICOLON .
+
+    IDENTIFIER      reduce using rule 5 (var_list -> var_list decl SEMICOLON .)
+    BEGIN           reduce using rule 5 (var_list -> var_list decl SEMICOLON .)
+
+
+state 55
+
+    (7) decl -> vars COLON type .
+
+    SEMICOLON       reduce using rule 7 (decl -> vars COLON type .)
+
+
+state 56
+
+    (8) decl -> vars COLON array .
+
+    SEMICOLON       reduce using rule 8 (decl -> vars COLON array .)
+
+
+state 57
+
+    (11) type -> INTEGER .
+
+    SEMICOLON       reduce using rule 11 (type -> INTEGER .)
+
+
+state 58
+
+    (12) type -> BOOLEAN .
+
+    SEMICOLON       reduce using rule 12 (type -> BOOLEAN .)
+
+
+state 59
+
+    (13) type -> REAL .
+
+    SEMICOLON       reduce using rule 13 (type -> REAL .)
+
+
+state 60
+
+    (14) type -> STRING .
+
+    SEMICOLON       reduce using rule 14 (type -> STRING .)
+
+
+state 61
+
+    (15) type -> CHAR .
+
+    SEMICOLON       reduce using rule 15 (type -> CHAR .)
+
+
+state 62
+
+    (16) array -> ARRAY . LBRACKET NUMBER DOUBLEPERIOD NUMBER RBRACKET OF type
+
+    LBRACKET        shift and go to state 92
+
+
+state 63
+
+    (9) vars -> vars COMMA IDENTIFIER .
+
+    COLON           reduce using rule 9 (vars -> vars COMMA IDENTIFIER .)
+    COMMA           reduce using rule 9 (vars -> vars COMMA IDENTIFIER .)
+
+
+state 64
+
+    (19) statement_list -> statement_list SEMICOLON statement .
+
+    END             reduce using rule 19 (statement_list -> statement_list SEMICOLON statement .)
+    SEMICOLON       reduce using rule 19 (statement_list -> statement_list SEMICOLON statement .)
+
+
+state 65
+
+    (29) atribution_statement -> IDENTIFIER ATRIBUTION expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    END             reduce using rule 29 (atribution_statement -> IDENTIFIER ATRIBUTION expression .)
+    SEMICOLON       reduce using rule 29 (atribution_statement -> IDENTIFIER ATRIBUTION expression .)
+    ELSE            reduce using rule 29 (atribution_statement -> IDENTIFIER ATRIBUTION expression .)
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+    EQUALS          shift and go to state 75
+    LESSTHAN        shift and go to state 76
+    GREATERTHAN     shift and go to state 77
+    LESSEQUALS      shift and go to state 78
+    GREATEQUALS     shift and go to state 79
+    LESSGREAT       shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+
+
+state 66
+
+    (40) procedure_call -> IDENTIFIER LPAREN expr_list . RPAREN
+    (43) expr_list -> expr_list . COMMA expression
+
+    RPAREN          shift and go to state 93
+    COMMA           shift and go to state 94
+
+
+state 67
+
+    (44) expr_list -> expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    RPAREN          reduce using rule 44 (expr_list -> expression .)
+    COMMA           reduce using rule 44 (expr_list -> expression .)
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+    EQUALS          shift and go to state 75
+    LESSTHAN        shift and go to state 76
+    GREATERTHAN     shift and go to state 77
+    LESSEQUALS      shift and go to state 78
+    GREATEQUALS     shift and go to state 79
+    LESSGREAT       shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+
+
+state 68
+
+    (30) if_statement -> IF expression THEN . statement ELSE statement
+    (31) if_statement -> IF expression THEN . statement
+    (21) statement -> . atribution_statement
+    (22) statement -> . if_statement
+    (23) statement -> . while_statement
+    (24) statement -> . for_statement
+    (25) statement -> . case_statement
+    (26) statement -> . procedure_call
+    (27) statement -> . sub_block
+    (28) statement -> .
+    (29) atribution_statement -> . IDENTIFIER ATRIBUTION expression
+    (30) if_statement -> . IF expression THEN statement ELSE statement
+    (31) if_statement -> . IF expression THEN statement
+    (32) while_statement -> . WHILE expression DO statement
+    (33) for_statement -> . FOR IDENTIFIER ATRIBUTION expression TO expression DO statement
+    (34) for_statement -> . FOR IDENTIFIER ATRIBUTION expression DOWNTO expression DO statement
+    (35) case_statement -> . CASE expression OF case_list END
+    (39) procedure_call -> . PROCEDURE_NAME LPAREN expr_list RPAREN
+    (40) procedure_call -> . IDENTIFIER LPAREN expr_list RPAREN
+    (17) sub_block -> . BEGIN statement_list END
+    (18) sub_block -> . BEGIN END
+
+    ELSE            reduce using rule 28 (statement -> .)
+    END             reduce using rule 28 (statement -> .)
+    SEMICOLON       reduce using rule 28 (statement -> .)
+    IDENTIFIER      shift and go to state 25
+    IF              shift and go to state 26
+    WHILE           shift and go to state 27
+    FOR             shift and go to state 28
+    CASE            shift and go to state 29
+    PROCEDURE_NAME  shift and go to state 30
+    BEGIN           shift and go to state 10
+
+    statement                      shift and go to state 95
+    atribution_statement           shift and go to state 18
+    if_statement                   shift and go to state 19
+    while_statement                shift and go to state 20
+    for_statement                  shift and go to state 21
+    case_statement                 shift and go to state 22
+    procedure_call                 shift and go to state 23
+    sub_block                      shift and go to state 24
+
+state 69
+
+    (46) expression -> expression PLUS . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 96
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 70
+
+    (47) expression -> expression MINUS . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 97
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 71
+
+    (48) expression -> expression TIMES . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 98
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 72
+
+    (49) expression -> expression DIVIDE . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 99
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 73
+
+    (50) expression -> expression DIV . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 100
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 74
+
+    (51) expression -> expression MOD . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 101
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 75
+
+    (52) expression -> expression EQUALS . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 102
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 76
+
+    (53) expression -> expression LESSTHAN . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 103
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 77
+
+    (54) expression -> expression GREATERTHAN . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 104
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 78
+
+    (55) expression -> expression LESSEQUALS . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 105
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 79
+
+    (56) expression -> expression GREATEQUALS . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 106
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 80
+
+    (57) expression -> expression LESSGREAT . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 107
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 81
+
+    (58) expression -> expression AND . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 108
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 82
+
+    (59) expression -> expression OR . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 109
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 83
+
+    (60) expression -> NOT expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    THEN            reduce using rule 60 (expression -> NOT expression .)
+    AND             reduce using rule 60 (expression -> NOT expression .)
+    OR              reduce using rule 60 (expression -> NOT expression .)
+    DO              reduce using rule 60 (expression -> NOT expression .)
+    OF              reduce using rule 60 (expression -> NOT expression .)
+    END             reduce using rule 60 (expression -> NOT expression .)
+    SEMICOLON       reduce using rule 60 (expression -> NOT expression .)
+    ELSE            reduce using rule 60 (expression -> NOT expression .)
+    RPAREN          reduce using rule 60 (expression -> NOT expression .)
+    COMMA           reduce using rule 60 (expression -> NOT expression .)
+    RBRACKET        reduce using rule 60 (expression -> NOT expression .)
+    TO              reduce using rule 60 (expression -> NOT expression .)
+    DOWNTO          reduce using rule 60 (expression -> NOT expression .)
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+    EQUALS          shift and go to state 75
+    LESSTHAN        shift and go to state 76
+    GREATERTHAN     shift and go to state 77
+    LESSEQUALS      shift and go to state 78
+    GREATEQUALS     shift and go to state 79
+    LESSGREAT       shift and go to state 80
+
+  ! PLUS            [ reduce using rule 60 (expression -> NOT expression .) ]
+  ! MINUS           [ reduce using rule 60 (expression -> NOT expression .) ]
+  ! TIMES           [ reduce using rule 60 (expression -> NOT expression .) ]
+  ! DIVIDE          [ reduce using rule 60 (expression -> NOT expression .) ]
+  ! DIV             [ reduce using rule 60 (expression -> NOT expression .) ]
+  ! MOD             [ reduce using rule 60 (expression -> NOT expression .) ]
+  ! EQUALS          [ reduce using rule 60 (expression -> NOT expression .) ]
+  ! LESSTHAN        [ reduce using rule 60 (expression -> NOT expression .) ]
+  ! GREATERTHAN     [ reduce using rule 60 (expression -> NOT expression .) ]
+  ! LESSEQUALS      [ reduce using rule 60 (expression -> NOT expression .) ]
+  ! GREATEQUALS     [ reduce using rule 60 (expression -> NOT expression .) ]
+  ! LESSGREAT       [ reduce using rule 60 (expression -> NOT expression .) ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 84
+
+    (61) expression -> LPAREN expression . RPAREN
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    RPAREN          shift and go to state 110
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+    EQUALS          shift and go to state 75
+    LESSTHAN        shift and go to state 76
+    GREATERTHAN     shift and go to state 77
+    LESSEQUALS      shift and go to state 78
+    GREATEQUALS     shift and go to state 79
+    LESSGREAT       shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+
+
+state 85
+
+    (66) factor -> IDENTIFIER LBRACKET . expression RBRACKET
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 111
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 86
+
+    (42) function_call -> IDENTIFIER LPAREN . expr_list RPAREN
+    (43) expr_list -> . expr_list COMMA expression
+    (44) expr_list -> . expression
+    (45) expr_list -> .
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    RPAREN          reduce using rule 45 (expr_list -> .)
+    COMMA           reduce using rule 45 (expr_list -> .)
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expr_list                      shift and go to state 112
+    expression                     shift and go to state 67
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 87
+
+    (41) function_call -> FUNCTION_NAME LPAREN . expr_list RPAREN
+    (43) expr_list -> . expr_list COMMA expression
+    (44) expr_list -> . expression
+    (45) expr_list -> .
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    RPAREN          reduce using rule 45 (expr_list -> .)
+    COMMA           reduce using rule 45 (expr_list -> .)
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expr_list                      shift and go to state 113
+    expression                     shift and go to state 67
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 88
+
+    (32) while_statement -> WHILE expression DO . statement
+    (21) statement -> . atribution_statement
+    (22) statement -> . if_statement
+    (23) statement -> . while_statement
+    (24) statement -> . for_statement
+    (25) statement -> . case_statement
+    (26) statement -> . procedure_call
+    (27) statement -> . sub_block
+    (28) statement -> .
+    (29) atribution_statement -> . IDENTIFIER ATRIBUTION expression
+    (30) if_statement -> . IF expression THEN statement ELSE statement
+    (31) if_statement -> . IF expression THEN statement
+    (32) while_statement -> . WHILE expression DO statement
+    (33) for_statement -> . FOR IDENTIFIER ATRIBUTION expression TO expression DO statement
+    (34) for_statement -> . FOR IDENTIFIER ATRIBUTION expression DOWNTO expression DO statement
+    (35) case_statement -> . CASE expression OF case_list END
+    (39) procedure_call -> . PROCEDURE_NAME LPAREN expr_list RPAREN
+    (40) procedure_call -> . IDENTIFIER LPAREN expr_list RPAREN
+    (17) sub_block -> . BEGIN statement_list END
+    (18) sub_block -> . BEGIN END
+
+    ELSE            reduce using rule 28 (statement -> .)
+    END             reduce using rule 28 (statement -> .)
+    SEMICOLON       reduce using rule 28 (statement -> .)
+    IDENTIFIER      shift and go to state 25
+    IF              shift and go to state 26
+    WHILE           shift and go to state 27
+    FOR             shift and go to state 28
+    CASE            shift and go to state 29
+    PROCEDURE_NAME  shift and go to state 30
+    BEGIN           shift and go to state 10
+
+    statement                      shift and go to state 114
+    atribution_statement           shift and go to state 18
+    if_statement                   shift and go to state 19
+    while_statement                shift and go to state 20
+    for_statement                  shift and go to state 21
+    case_statement                 shift and go to state 22
+    procedure_call                 shift and go to state 23
+    sub_block                      shift and go to state 24
+
+state 89
+
+    (33) for_statement -> FOR IDENTIFIER ATRIBUTION . expression TO expression DO statement
+    (34) for_statement -> FOR IDENTIFIER ATRIBUTION . expression DOWNTO expression DO statement
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 115
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 90
+
+    (35) case_statement -> CASE expression OF . case_list END
+    (36) case_list -> . case_list SEMICOLON case_item
+    (37) case_list -> . case_item
+    (38) case_item -> . constant COLON statement
+    (70) constant -> . NUMBER
+    (71) constant -> . BOOLEAN_LITERAL
+    (72) constant -> . IDENTIFIER
+    (73) constant -> . CHAR_LITERAL
+    (74) constant -> . STRING_LITERAL
+
+    NUMBER          shift and go to state 119
+    BOOLEAN_LITERAL shift and go to state 120
+    IDENTIFIER      shift and go to state 121
+    CHAR_LITERAL    shift and go to state 122
+    STRING_LITERAL  shift and go to state 123
+
+    case_list                      shift and go to state 116
+    case_item                      shift and go to state 117
+    constant                       shift and go to state 118
+
+state 91
+
+    (39) procedure_call -> PROCEDURE_NAME LPAREN expr_list . RPAREN
+    (43) expr_list -> expr_list . COMMA expression
+
+    RPAREN          shift and go to state 124
+    COMMA           shift and go to state 94
+
+
+state 92
+
+    (16) array -> ARRAY LBRACKET . NUMBER DOUBLEPERIOD NUMBER RBRACKET OF type
+
+    NUMBER          shift and go to state 125
+
+
+state 93
+
+    (40) procedure_call -> IDENTIFIER LPAREN expr_list RPAREN .
+
+    END             reduce using rule 40 (procedure_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    SEMICOLON       reduce using rule 40 (procedure_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    ELSE            reduce using rule 40 (procedure_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+
+
+state 94
+
+    (43) expr_list -> expr_list COMMA . expression
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 126
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 95
+
+    (30) if_statement -> IF expression THEN statement . ELSE statement
+    (31) if_statement -> IF expression THEN statement .
+
+    ELSE            shift and go to state 127
+    END             reduce using rule 31 (if_statement -> IF expression THEN statement .)
+    SEMICOLON       reduce using rule 31 (if_statement -> IF expression THEN statement .)
+
+  ! ELSE            [ reduce using rule 31 (if_statement -> IF expression THEN statement .) ]
+
+
+state 96
+
+    (46) expression -> expression PLUS expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    THEN            reduce using rule 46 (expression -> expression PLUS expression .)
+    PLUS            reduce using rule 46 (expression -> expression PLUS expression .)
+    MINUS           reduce using rule 46 (expression -> expression PLUS expression .)
+    EQUALS          reduce using rule 46 (expression -> expression PLUS expression .)
+    LESSTHAN        reduce using rule 46 (expression -> expression PLUS expression .)
+    GREATERTHAN     reduce using rule 46 (expression -> expression PLUS expression .)
+    LESSEQUALS      reduce using rule 46 (expression -> expression PLUS expression .)
+    GREATEQUALS     reduce using rule 46 (expression -> expression PLUS expression .)
+    LESSGREAT       reduce using rule 46 (expression -> expression PLUS expression .)
+    AND             reduce using rule 46 (expression -> expression PLUS expression .)
+    OR              reduce using rule 46 (expression -> expression PLUS expression .)
+    DO              reduce using rule 46 (expression -> expression PLUS expression .)
+    OF              reduce using rule 46 (expression -> expression PLUS expression .)
+    END             reduce using rule 46 (expression -> expression PLUS expression .)
+    SEMICOLON       reduce using rule 46 (expression -> expression PLUS expression .)
+    ELSE            reduce using rule 46 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 46 (expression -> expression PLUS expression .)
+    COMMA           reduce using rule 46 (expression -> expression PLUS expression .)
+    RBRACKET        reduce using rule 46 (expression -> expression PLUS expression .)
+    TO              reduce using rule 46 (expression -> expression PLUS expression .)
+    DOWNTO          reduce using rule 46 (expression -> expression PLUS expression .)
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+
+  ! TIMES           [ reduce using rule 46 (expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 46 (expression -> expression PLUS expression .) ]
+  ! DIV             [ reduce using rule 46 (expression -> expression PLUS expression .) ]
+  ! MOD             [ reduce using rule 46 (expression -> expression PLUS expression .) ]
+  ! PLUS            [ shift and go to state 69 ]
+  ! MINUS           [ shift and go to state 70 ]
+  ! EQUALS          [ shift and go to state 75 ]
+  ! LESSTHAN        [ shift and go to state 76 ]
+  ! GREATERTHAN     [ shift and go to state 77 ]
+  ! LESSEQUALS      [ shift and go to state 78 ]
+  ! GREATEQUALS     [ shift and go to state 79 ]
+  ! LESSGREAT       [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 97
+
+    (47) expression -> expression MINUS expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    THEN            reduce using rule 47 (expression -> expression MINUS expression .)
+    PLUS            reduce using rule 47 (expression -> expression MINUS expression .)
+    MINUS           reduce using rule 47 (expression -> expression MINUS expression .)
+    EQUALS          reduce using rule 47 (expression -> expression MINUS expression .)
+    LESSTHAN        reduce using rule 47 (expression -> expression MINUS expression .)
+    GREATERTHAN     reduce using rule 47 (expression -> expression MINUS expression .)
+    LESSEQUALS      reduce using rule 47 (expression -> expression MINUS expression .)
+    GREATEQUALS     reduce using rule 47 (expression -> expression MINUS expression .)
+    LESSGREAT       reduce using rule 47 (expression -> expression MINUS expression .)
+    AND             reduce using rule 47 (expression -> expression MINUS expression .)
+    OR              reduce using rule 47 (expression -> expression MINUS expression .)
+    DO              reduce using rule 47 (expression -> expression MINUS expression .)
+    OF              reduce using rule 47 (expression -> expression MINUS expression .)
+    END             reduce using rule 47 (expression -> expression MINUS expression .)
+    SEMICOLON       reduce using rule 47 (expression -> expression MINUS expression .)
+    ELSE            reduce using rule 47 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 47 (expression -> expression MINUS expression .)
+    COMMA           reduce using rule 47 (expression -> expression MINUS expression .)
+    RBRACKET        reduce using rule 47 (expression -> expression MINUS expression .)
+    TO              reduce using rule 47 (expression -> expression MINUS expression .)
+    DOWNTO          reduce using rule 47 (expression -> expression MINUS expression .)
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+
+  ! TIMES           [ reduce using rule 47 (expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 47 (expression -> expression MINUS expression .) ]
+  ! DIV             [ reduce using rule 47 (expression -> expression MINUS expression .) ]
+  ! MOD             [ reduce using rule 47 (expression -> expression MINUS expression .) ]
+  ! PLUS            [ shift and go to state 69 ]
+  ! MINUS           [ shift and go to state 70 ]
+  ! EQUALS          [ shift and go to state 75 ]
+  ! LESSTHAN        [ shift and go to state 76 ]
+  ! GREATERTHAN     [ shift and go to state 77 ]
+  ! LESSEQUALS      [ shift and go to state 78 ]
+  ! GREATEQUALS     [ shift and go to state 79 ]
+  ! LESSGREAT       [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 98
+
+    (48) expression -> expression TIMES expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    THEN            reduce using rule 48 (expression -> expression TIMES expression .)
+    PLUS            reduce using rule 48 (expression -> expression TIMES expression .)
+    MINUS           reduce using rule 48 (expression -> expression TIMES expression .)
+    TIMES           reduce using rule 48 (expression -> expression TIMES expression .)
+    DIVIDE          reduce using rule 48 (expression -> expression TIMES expression .)
+    DIV             reduce using rule 48 (expression -> expression TIMES expression .)
+    MOD             reduce using rule 48 (expression -> expression TIMES expression .)
+    EQUALS          reduce using rule 48 (expression -> expression TIMES expression .)
+    LESSTHAN        reduce using rule 48 (expression -> expression TIMES expression .)
+    GREATERTHAN     reduce using rule 48 (expression -> expression TIMES expression .)
+    LESSEQUALS      reduce using rule 48 (expression -> expression TIMES expression .)
+    GREATEQUALS     reduce using rule 48 (expression -> expression TIMES expression .)
+    LESSGREAT       reduce using rule 48 (expression -> expression TIMES expression .)
+    AND             reduce using rule 48 (expression -> expression TIMES expression .)
+    OR              reduce using rule 48 (expression -> expression TIMES expression .)
+    DO              reduce using rule 48 (expression -> expression TIMES expression .)
+    OF              reduce using rule 48 (expression -> expression TIMES expression .)
+    END             reduce using rule 48 (expression -> expression TIMES expression .)
+    SEMICOLON       reduce using rule 48 (expression -> expression TIMES expression .)
+    ELSE            reduce using rule 48 (expression -> expression TIMES expression .)
+    RPAREN          reduce using rule 48 (expression -> expression TIMES expression .)
+    COMMA           reduce using rule 48 (expression -> expression TIMES expression .)
+    RBRACKET        reduce using rule 48 (expression -> expression TIMES expression .)
+    TO              reduce using rule 48 (expression -> expression TIMES expression .)
+    DOWNTO          reduce using rule 48 (expression -> expression TIMES expression .)
+
+  ! PLUS            [ shift and go to state 69 ]
+  ! MINUS           [ shift and go to state 70 ]
+  ! TIMES           [ shift and go to state 71 ]
+  ! DIVIDE          [ shift and go to state 72 ]
+  ! DIV             [ shift and go to state 73 ]
+  ! MOD             [ shift and go to state 74 ]
+  ! EQUALS          [ shift and go to state 75 ]
+  ! LESSTHAN        [ shift and go to state 76 ]
+  ! GREATERTHAN     [ shift and go to state 77 ]
+  ! LESSEQUALS      [ shift and go to state 78 ]
+  ! GREATEQUALS     [ shift and go to state 79 ]
+  ! LESSGREAT       [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 99
+
+    (49) expression -> expression DIVIDE expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    THEN            reduce using rule 49 (expression -> expression DIVIDE expression .)
+    PLUS            reduce using rule 49 (expression -> expression DIVIDE expression .)
+    MINUS           reduce using rule 49 (expression -> expression DIVIDE expression .)
+    TIMES           reduce using rule 49 (expression -> expression DIVIDE expression .)
+    DIVIDE          reduce using rule 49 (expression -> expression DIVIDE expression .)
+    DIV             reduce using rule 49 (expression -> expression DIVIDE expression .)
+    MOD             reduce using rule 49 (expression -> expression DIVIDE expression .)
+    EQUALS          reduce using rule 49 (expression -> expression DIVIDE expression .)
+    LESSTHAN        reduce using rule 49 (expression -> expression DIVIDE expression .)
+    GREATERTHAN     reduce using rule 49 (expression -> expression DIVIDE expression .)
+    LESSEQUALS      reduce using rule 49 (expression -> expression DIVIDE expression .)
+    GREATEQUALS     reduce using rule 49 (expression -> expression DIVIDE expression .)
+    LESSGREAT       reduce using rule 49 (expression -> expression DIVIDE expression .)
+    AND             reduce using rule 49 (expression -> expression DIVIDE expression .)
+    OR              reduce using rule 49 (expression -> expression DIVIDE expression .)
+    DO              reduce using rule 49 (expression -> expression DIVIDE expression .)
+    OF              reduce using rule 49 (expression -> expression DIVIDE expression .)
+    END             reduce using rule 49 (expression -> expression DIVIDE expression .)
+    SEMICOLON       reduce using rule 49 (expression -> expression DIVIDE expression .)
+    ELSE            reduce using rule 49 (expression -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 49 (expression -> expression DIVIDE expression .)
+    COMMA           reduce using rule 49 (expression -> expression DIVIDE expression .)
+    RBRACKET        reduce using rule 49 (expression -> expression DIVIDE expression .)
+    TO              reduce using rule 49 (expression -> expression DIVIDE expression .)
+    DOWNTO          reduce using rule 49 (expression -> expression DIVIDE expression .)
+
+  ! PLUS            [ shift and go to state 69 ]
+  ! MINUS           [ shift and go to state 70 ]
+  ! TIMES           [ shift and go to state 71 ]
+  ! DIVIDE          [ shift and go to state 72 ]
+  ! DIV             [ shift and go to state 73 ]
+  ! MOD             [ shift and go to state 74 ]
+  ! EQUALS          [ shift and go to state 75 ]
+  ! LESSTHAN        [ shift and go to state 76 ]
+  ! GREATERTHAN     [ shift and go to state 77 ]
+  ! LESSEQUALS      [ shift and go to state 78 ]
+  ! GREATEQUALS     [ shift and go to state 79 ]
+  ! LESSGREAT       [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 100
+
+    (50) expression -> expression DIV expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    THEN            reduce using rule 50 (expression -> expression DIV expression .)
+    PLUS            reduce using rule 50 (expression -> expression DIV expression .)
+    MINUS           reduce using rule 50 (expression -> expression DIV expression .)
+    TIMES           reduce using rule 50 (expression -> expression DIV expression .)
+    DIVIDE          reduce using rule 50 (expression -> expression DIV expression .)
+    DIV             reduce using rule 50 (expression -> expression DIV expression .)
+    MOD             reduce using rule 50 (expression -> expression DIV expression .)
+    EQUALS          reduce using rule 50 (expression -> expression DIV expression .)
+    LESSTHAN        reduce using rule 50 (expression -> expression DIV expression .)
+    GREATERTHAN     reduce using rule 50 (expression -> expression DIV expression .)
+    LESSEQUALS      reduce using rule 50 (expression -> expression DIV expression .)
+    GREATEQUALS     reduce using rule 50 (expression -> expression DIV expression .)
+    LESSGREAT       reduce using rule 50 (expression -> expression DIV expression .)
+    AND             reduce using rule 50 (expression -> expression DIV expression .)
+    OR              reduce using rule 50 (expression -> expression DIV expression .)
+    DO              reduce using rule 50 (expression -> expression DIV expression .)
+    OF              reduce using rule 50 (expression -> expression DIV expression .)
+    END             reduce using rule 50 (expression -> expression DIV expression .)
+    SEMICOLON       reduce using rule 50 (expression -> expression DIV expression .)
+    ELSE            reduce using rule 50 (expression -> expression DIV expression .)
+    RPAREN          reduce using rule 50 (expression -> expression DIV expression .)
+    COMMA           reduce using rule 50 (expression -> expression DIV expression .)
+    RBRACKET        reduce using rule 50 (expression -> expression DIV expression .)
+    TO              reduce using rule 50 (expression -> expression DIV expression .)
+    DOWNTO          reduce using rule 50 (expression -> expression DIV expression .)
+
+  ! PLUS            [ shift and go to state 69 ]
+  ! MINUS           [ shift and go to state 70 ]
+  ! TIMES           [ shift and go to state 71 ]
+  ! DIVIDE          [ shift and go to state 72 ]
+  ! DIV             [ shift and go to state 73 ]
+  ! MOD             [ shift and go to state 74 ]
+  ! EQUALS          [ shift and go to state 75 ]
+  ! LESSTHAN        [ shift and go to state 76 ]
+  ! GREATERTHAN     [ shift and go to state 77 ]
+  ! LESSEQUALS      [ shift and go to state 78 ]
+  ! GREATEQUALS     [ shift and go to state 79 ]
+  ! LESSGREAT       [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 101
+
+    (51) expression -> expression MOD expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    THEN            reduce using rule 51 (expression -> expression MOD expression .)
+    PLUS            reduce using rule 51 (expression -> expression MOD expression .)
+    MINUS           reduce using rule 51 (expression -> expression MOD expression .)
+    TIMES           reduce using rule 51 (expression -> expression MOD expression .)
+    DIVIDE          reduce using rule 51 (expression -> expression MOD expression .)
+    DIV             reduce using rule 51 (expression -> expression MOD expression .)
+    MOD             reduce using rule 51 (expression -> expression MOD expression .)
+    EQUALS          reduce using rule 51 (expression -> expression MOD expression .)
+    LESSTHAN        reduce using rule 51 (expression -> expression MOD expression .)
+    GREATERTHAN     reduce using rule 51 (expression -> expression MOD expression .)
+    LESSEQUALS      reduce using rule 51 (expression -> expression MOD expression .)
+    GREATEQUALS     reduce using rule 51 (expression -> expression MOD expression .)
+    LESSGREAT       reduce using rule 51 (expression -> expression MOD expression .)
+    AND             reduce using rule 51 (expression -> expression MOD expression .)
+    OR              reduce using rule 51 (expression -> expression MOD expression .)
+    DO              reduce using rule 51 (expression -> expression MOD expression .)
+    OF              reduce using rule 51 (expression -> expression MOD expression .)
+    END             reduce using rule 51 (expression -> expression MOD expression .)
+    SEMICOLON       reduce using rule 51 (expression -> expression MOD expression .)
+    ELSE            reduce using rule 51 (expression -> expression MOD expression .)
+    RPAREN          reduce using rule 51 (expression -> expression MOD expression .)
+    COMMA           reduce using rule 51 (expression -> expression MOD expression .)
+    RBRACKET        reduce using rule 51 (expression -> expression MOD expression .)
+    TO              reduce using rule 51 (expression -> expression MOD expression .)
+    DOWNTO          reduce using rule 51 (expression -> expression MOD expression .)
+
+  ! PLUS            [ shift and go to state 69 ]
+  ! MINUS           [ shift and go to state 70 ]
+  ! TIMES           [ shift and go to state 71 ]
+  ! DIVIDE          [ shift and go to state 72 ]
+  ! DIV             [ shift and go to state 73 ]
+  ! MOD             [ shift and go to state 74 ]
+  ! EQUALS          [ shift and go to state 75 ]
+  ! LESSTHAN        [ shift and go to state 76 ]
+  ! GREATERTHAN     [ shift and go to state 77 ]
+  ! LESSEQUALS      [ shift and go to state 78 ]
+  ! GREATEQUALS     [ shift and go to state 79 ]
+  ! LESSGREAT       [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 102
+
+    (52) expression -> expression EQUALS expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    THEN            reduce using rule 52 (expression -> expression EQUALS expression .)
+    EQUALS          reduce using rule 52 (expression -> expression EQUALS expression .)
+    LESSTHAN        reduce using rule 52 (expression -> expression EQUALS expression .)
+    GREATERTHAN     reduce using rule 52 (expression -> expression EQUALS expression .)
+    LESSEQUALS      reduce using rule 52 (expression -> expression EQUALS expression .)
+    GREATEQUALS     reduce using rule 52 (expression -> expression EQUALS expression .)
+    LESSGREAT       reduce using rule 52 (expression -> expression EQUALS expression .)
+    AND             reduce using rule 52 (expression -> expression EQUALS expression .)
+    OR              reduce using rule 52 (expression -> expression EQUALS expression .)
+    DO              reduce using rule 52 (expression -> expression EQUALS expression .)
+    OF              reduce using rule 52 (expression -> expression EQUALS expression .)
+    END             reduce using rule 52 (expression -> expression EQUALS expression .)
+    SEMICOLON       reduce using rule 52 (expression -> expression EQUALS expression .)
+    ELSE            reduce using rule 52 (expression -> expression EQUALS expression .)
+    RPAREN          reduce using rule 52 (expression -> expression EQUALS expression .)
+    COMMA           reduce using rule 52 (expression -> expression EQUALS expression .)
+    RBRACKET        reduce using rule 52 (expression -> expression EQUALS expression .)
+    TO              reduce using rule 52 (expression -> expression EQUALS expression .)
+    DOWNTO          reduce using rule 52 (expression -> expression EQUALS expression .)
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+
+  ! PLUS            [ reduce using rule 52 (expression -> expression EQUALS expression .) ]
+  ! MINUS           [ reduce using rule 52 (expression -> expression EQUALS expression .) ]
+  ! TIMES           [ reduce using rule 52 (expression -> expression EQUALS expression .) ]
+  ! DIVIDE          [ reduce using rule 52 (expression -> expression EQUALS expression .) ]
+  ! DIV             [ reduce using rule 52 (expression -> expression EQUALS expression .) ]
+  ! MOD             [ reduce using rule 52 (expression -> expression EQUALS expression .) ]
+  ! EQUALS          [ shift and go to state 75 ]
+  ! LESSTHAN        [ shift and go to state 76 ]
+  ! GREATERTHAN     [ shift and go to state 77 ]
+  ! LESSEQUALS      [ shift and go to state 78 ]
+  ! GREATEQUALS     [ shift and go to state 79 ]
+  ! LESSGREAT       [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 103
+
+    (53) expression -> expression LESSTHAN expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    THEN            reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    EQUALS          reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    LESSTHAN        reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    GREATERTHAN     reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    LESSEQUALS      reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    GREATEQUALS     reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    LESSGREAT       reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    AND             reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    OR              reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    DO              reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    OF              reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    END             reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    SEMICOLON       reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    ELSE            reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    RPAREN          reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    COMMA           reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    RBRACKET        reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    TO              reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    DOWNTO          reduce using rule 53 (expression -> expression LESSTHAN expression .)
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+
+  ! PLUS            [ reduce using rule 53 (expression -> expression LESSTHAN expression .) ]
+  ! MINUS           [ reduce using rule 53 (expression -> expression LESSTHAN expression .) ]
+  ! TIMES           [ reduce using rule 53 (expression -> expression LESSTHAN expression .) ]
+  ! DIVIDE          [ reduce using rule 53 (expression -> expression LESSTHAN expression .) ]
+  ! DIV             [ reduce using rule 53 (expression -> expression LESSTHAN expression .) ]
+  ! MOD             [ reduce using rule 53 (expression -> expression LESSTHAN expression .) ]
+  ! EQUALS          [ shift and go to state 75 ]
+  ! LESSTHAN        [ shift and go to state 76 ]
+  ! GREATERTHAN     [ shift and go to state 77 ]
+  ! LESSEQUALS      [ shift and go to state 78 ]
+  ! GREATEQUALS     [ shift and go to state 79 ]
+  ! LESSGREAT       [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 104
+
+    (54) expression -> expression GREATERTHAN expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    THEN            reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    EQUALS          reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    LESSTHAN        reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    GREATERTHAN     reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    LESSEQUALS      reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    GREATEQUALS     reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    LESSGREAT       reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    AND             reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    OR              reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    DO              reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    OF              reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    END             reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    SEMICOLON       reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    ELSE            reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    RPAREN          reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    COMMA           reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    RBRACKET        reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    TO              reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    DOWNTO          reduce using rule 54 (expression -> expression GREATERTHAN expression .)
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+
+  ! PLUS            [ reduce using rule 54 (expression -> expression GREATERTHAN expression .) ]
+  ! MINUS           [ reduce using rule 54 (expression -> expression GREATERTHAN expression .) ]
+  ! TIMES           [ reduce using rule 54 (expression -> expression GREATERTHAN expression .) ]
+  ! DIVIDE          [ reduce using rule 54 (expression -> expression GREATERTHAN expression .) ]
+  ! DIV             [ reduce using rule 54 (expression -> expression GREATERTHAN expression .) ]
+  ! MOD             [ reduce using rule 54 (expression -> expression GREATERTHAN expression .) ]
+  ! EQUALS          [ shift and go to state 75 ]
+  ! LESSTHAN        [ shift and go to state 76 ]
+  ! GREATERTHAN     [ shift and go to state 77 ]
+  ! LESSEQUALS      [ shift and go to state 78 ]
+  ! GREATEQUALS     [ shift and go to state 79 ]
+  ! LESSGREAT       [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 105
+
+    (55) expression -> expression LESSEQUALS expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    THEN            reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    EQUALS          reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    LESSTHAN        reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    GREATERTHAN     reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    LESSEQUALS      reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    GREATEQUALS     reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    LESSGREAT       reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    AND             reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    OR              reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    DO              reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    OF              reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    END             reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    SEMICOLON       reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    ELSE            reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    RPAREN          reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    COMMA           reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    RBRACKET        reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    TO              reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    DOWNTO          reduce using rule 55 (expression -> expression LESSEQUALS expression .)
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+
+  ! PLUS            [ reduce using rule 55 (expression -> expression LESSEQUALS expression .) ]
+  ! MINUS           [ reduce using rule 55 (expression -> expression LESSEQUALS expression .) ]
+  ! TIMES           [ reduce using rule 55 (expression -> expression LESSEQUALS expression .) ]
+  ! DIVIDE          [ reduce using rule 55 (expression -> expression LESSEQUALS expression .) ]
+  ! DIV             [ reduce using rule 55 (expression -> expression LESSEQUALS expression .) ]
+  ! MOD             [ reduce using rule 55 (expression -> expression LESSEQUALS expression .) ]
+  ! EQUALS          [ shift and go to state 75 ]
+  ! LESSTHAN        [ shift and go to state 76 ]
+  ! GREATERTHAN     [ shift and go to state 77 ]
+  ! LESSEQUALS      [ shift and go to state 78 ]
+  ! GREATEQUALS     [ shift and go to state 79 ]
+  ! LESSGREAT       [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 106
+
+    (56) expression -> expression GREATEQUALS expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    THEN            reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    EQUALS          reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    LESSTHAN        reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    GREATERTHAN     reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    LESSEQUALS      reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    GREATEQUALS     reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    LESSGREAT       reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    AND             reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    OR              reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    DO              reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    OF              reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    END             reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    SEMICOLON       reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    ELSE            reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    RPAREN          reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    COMMA           reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    RBRACKET        reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    TO              reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    DOWNTO          reduce using rule 56 (expression -> expression GREATEQUALS expression .)
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+
+  ! PLUS            [ reduce using rule 56 (expression -> expression GREATEQUALS expression .) ]
+  ! MINUS           [ reduce using rule 56 (expression -> expression GREATEQUALS expression .) ]
+  ! TIMES           [ reduce using rule 56 (expression -> expression GREATEQUALS expression .) ]
+  ! DIVIDE          [ reduce using rule 56 (expression -> expression GREATEQUALS expression .) ]
+  ! DIV             [ reduce using rule 56 (expression -> expression GREATEQUALS expression .) ]
+  ! MOD             [ reduce using rule 56 (expression -> expression GREATEQUALS expression .) ]
+  ! EQUALS          [ shift and go to state 75 ]
+  ! LESSTHAN        [ shift and go to state 76 ]
+  ! GREATERTHAN     [ shift and go to state 77 ]
+  ! LESSEQUALS      [ shift and go to state 78 ]
+  ! GREATEQUALS     [ shift and go to state 79 ]
+  ! LESSGREAT       [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 107
+
+    (57) expression -> expression LESSGREAT expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    THEN            reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    EQUALS          reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    LESSTHAN        reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    GREATERTHAN     reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    LESSEQUALS      reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    GREATEQUALS     reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    LESSGREAT       reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    AND             reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    OR              reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    DO              reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    OF              reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    END             reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    SEMICOLON       reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    ELSE            reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    RPAREN          reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    COMMA           reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    RBRACKET        reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    TO              reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    DOWNTO          reduce using rule 57 (expression -> expression LESSGREAT expression .)
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+
+  ! PLUS            [ reduce using rule 57 (expression -> expression LESSGREAT expression .) ]
+  ! MINUS           [ reduce using rule 57 (expression -> expression LESSGREAT expression .) ]
+  ! TIMES           [ reduce using rule 57 (expression -> expression LESSGREAT expression .) ]
+  ! DIVIDE          [ reduce using rule 57 (expression -> expression LESSGREAT expression .) ]
+  ! DIV             [ reduce using rule 57 (expression -> expression LESSGREAT expression .) ]
+  ! MOD             [ reduce using rule 57 (expression -> expression LESSGREAT expression .) ]
+  ! EQUALS          [ shift and go to state 75 ]
+  ! LESSTHAN        [ shift and go to state 76 ]
+  ! GREATERTHAN     [ shift and go to state 77 ]
+  ! LESSEQUALS      [ shift and go to state 78 ]
+  ! GREATEQUALS     [ shift and go to state 79 ]
+  ! LESSGREAT       [ shift and go to state 80 ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 108
+
+    (58) expression -> expression AND expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    THEN            reduce using rule 58 (expression -> expression AND expression .)
+    AND             reduce using rule 58 (expression -> expression AND expression .)
+    OR              reduce using rule 58 (expression -> expression AND expression .)
+    DO              reduce using rule 58 (expression -> expression AND expression .)
+    OF              reduce using rule 58 (expression -> expression AND expression .)
+    END             reduce using rule 58 (expression -> expression AND expression .)
+    SEMICOLON       reduce using rule 58 (expression -> expression AND expression .)
+    ELSE            reduce using rule 58 (expression -> expression AND expression .)
+    RPAREN          reduce using rule 58 (expression -> expression AND expression .)
+    COMMA           reduce using rule 58 (expression -> expression AND expression .)
+    RBRACKET        reduce using rule 58 (expression -> expression AND expression .)
+    TO              reduce using rule 58 (expression -> expression AND expression .)
+    DOWNTO          reduce using rule 58 (expression -> expression AND expression .)
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+    EQUALS          shift and go to state 75
+    LESSTHAN        shift and go to state 76
+    GREATERTHAN     shift and go to state 77
+    LESSEQUALS      shift and go to state 78
+    GREATEQUALS     shift and go to state 79
+    LESSGREAT       shift and go to state 80
+
+  ! PLUS            [ reduce using rule 58 (expression -> expression AND expression .) ]
+  ! MINUS           [ reduce using rule 58 (expression -> expression AND expression .) ]
+  ! TIMES           [ reduce using rule 58 (expression -> expression AND expression .) ]
+  ! DIVIDE          [ reduce using rule 58 (expression -> expression AND expression .) ]
+  ! DIV             [ reduce using rule 58 (expression -> expression AND expression .) ]
+  ! MOD             [ reduce using rule 58 (expression -> expression AND expression .) ]
+  ! EQUALS          [ reduce using rule 58 (expression -> expression AND expression .) ]
+  ! LESSTHAN        [ reduce using rule 58 (expression -> expression AND expression .) ]
+  ! GREATERTHAN     [ reduce using rule 58 (expression -> expression AND expression .) ]
+  ! LESSEQUALS      [ reduce using rule 58 (expression -> expression AND expression .) ]
+  ! GREATEQUALS     [ reduce using rule 58 (expression -> expression AND expression .) ]
+  ! LESSGREAT       [ reduce using rule 58 (expression -> expression AND expression .) ]
+  ! AND             [ shift and go to state 81 ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 109
+
+    (59) expression -> expression OR expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    THEN            reduce using rule 59 (expression -> expression OR expression .)
+    OR              reduce using rule 59 (expression -> expression OR expression .)
+    DO              reduce using rule 59 (expression -> expression OR expression .)
+    OF              reduce using rule 59 (expression -> expression OR expression .)
+    END             reduce using rule 59 (expression -> expression OR expression .)
+    SEMICOLON       reduce using rule 59 (expression -> expression OR expression .)
+    ELSE            reduce using rule 59 (expression -> expression OR expression .)
+    RPAREN          reduce using rule 59 (expression -> expression OR expression .)
+    COMMA           reduce using rule 59 (expression -> expression OR expression .)
+    RBRACKET        reduce using rule 59 (expression -> expression OR expression .)
+    TO              reduce using rule 59 (expression -> expression OR expression .)
+    DOWNTO          reduce using rule 59 (expression -> expression OR expression .)
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+    EQUALS          shift and go to state 75
+    LESSTHAN        shift and go to state 76
+    GREATERTHAN     shift and go to state 77
+    LESSEQUALS      shift and go to state 78
+    GREATEQUALS     shift and go to state 79
+    LESSGREAT       shift and go to state 80
+    AND             shift and go to state 81
+
+  ! PLUS            [ reduce using rule 59 (expression -> expression OR expression .) ]
+  ! MINUS           [ reduce using rule 59 (expression -> expression OR expression .) ]
+  ! TIMES           [ reduce using rule 59 (expression -> expression OR expression .) ]
+  ! DIVIDE          [ reduce using rule 59 (expression -> expression OR expression .) ]
+  ! DIV             [ reduce using rule 59 (expression -> expression OR expression .) ]
+  ! MOD             [ reduce using rule 59 (expression -> expression OR expression .) ]
+  ! EQUALS          [ reduce using rule 59 (expression -> expression OR expression .) ]
+  ! LESSTHAN        [ reduce using rule 59 (expression -> expression OR expression .) ]
+  ! GREATERTHAN     [ reduce using rule 59 (expression -> expression OR expression .) ]
+  ! LESSEQUALS      [ reduce using rule 59 (expression -> expression OR expression .) ]
+  ! GREATEQUALS     [ reduce using rule 59 (expression -> expression OR expression .) ]
+  ! LESSGREAT       [ reduce using rule 59 (expression -> expression OR expression .) ]
+  ! AND             [ reduce using rule 59 (expression -> expression OR expression .) ]
+  ! OR              [ shift and go to state 82 ]
+
+
+state 110
+
+    (61) expression -> LPAREN expression RPAREN .
+
+    THEN            reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    DIV             reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    MOD             reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    EQUALS          reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    LESSTHAN        reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    GREATERTHAN     reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    LESSEQUALS      reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    GREATEQUALS     reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    LESSGREAT       reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    AND             reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    OR              reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    DO              reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    OF              reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    END             reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    SEMICOLON       reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    ELSE            reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    RBRACKET        reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    TO              reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+    DOWNTO          reduce using rule 61 (expression -> LPAREN expression RPAREN .)
+
+
+state 111
+
+    (66) factor -> IDENTIFIER LBRACKET expression . RBRACKET
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    RBRACKET        shift and go to state 128
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+    EQUALS          shift and go to state 75
+    LESSTHAN        shift and go to state 76
+    GREATERTHAN     shift and go to state 77
+    LESSEQUALS      shift and go to state 78
+    GREATEQUALS     shift and go to state 79
+    LESSGREAT       shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+
+
+state 112
+
+    (42) function_call -> IDENTIFIER LPAREN expr_list . RPAREN
+    (43) expr_list -> expr_list . COMMA expression
+
+    RPAREN          shift and go to state 129
+    COMMA           shift and go to state 94
+
+
+state 113
+
+    (41) function_call -> FUNCTION_NAME LPAREN expr_list . RPAREN
+    (43) expr_list -> expr_list . COMMA expression
+
+    RPAREN          shift and go to state 130
+    COMMA           shift and go to state 94
+
+
+state 114
+
+    (32) while_statement -> WHILE expression DO statement .
+
+    END             reduce using rule 32 (while_statement -> WHILE expression DO statement .)
+    SEMICOLON       reduce using rule 32 (while_statement -> WHILE expression DO statement .)
+    ELSE            reduce using rule 32 (while_statement -> WHILE expression DO statement .)
+
+
+state 115
+
+    (33) for_statement -> FOR IDENTIFIER ATRIBUTION expression . TO expression DO statement
+    (34) for_statement -> FOR IDENTIFIER ATRIBUTION expression . DOWNTO expression DO statement
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    TO              shift and go to state 131
+    DOWNTO          shift and go to state 132
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+    EQUALS          shift and go to state 75
+    LESSTHAN        shift and go to state 76
+    GREATERTHAN     shift and go to state 77
+    LESSEQUALS      shift and go to state 78
+    GREATEQUALS     shift and go to state 79
+    LESSGREAT       shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+
+
+state 116
+
+    (35) case_statement -> CASE expression OF case_list . END
+    (36) case_list -> case_list . SEMICOLON case_item
+
+    END             shift and go to state 133
+    SEMICOLON       shift and go to state 134
+
+
+state 117
+
+    (37) case_list -> case_item .
+
+    END             reduce using rule 37 (case_list -> case_item .)
+    SEMICOLON       reduce using rule 37 (case_list -> case_item .)
+
+
+state 118
+
+    (38) case_item -> constant . COLON statement
+
+    COLON           shift and go to state 135
+
+
+state 119
+
+    (70) constant -> NUMBER .
+
+    COLON           reduce using rule 70 (constant -> NUMBER .)
+
+
+state 120
+
+    (71) constant -> BOOLEAN_LITERAL .
+
+    COLON           reduce using rule 71 (constant -> BOOLEAN_LITERAL .)
+
+
+state 121
+
+    (72) constant -> IDENTIFIER .
+
+    COLON           reduce using rule 72 (constant -> IDENTIFIER .)
+
+
+state 122
+
+    (73) constant -> CHAR_LITERAL .
+
+    COLON           reduce using rule 73 (constant -> CHAR_LITERAL .)
+
+
+state 123
+
+    (74) constant -> STRING_LITERAL .
+
+    COLON           reduce using rule 74 (constant -> STRING_LITERAL .)
+
+
+state 124
+
+    (39) procedure_call -> PROCEDURE_NAME LPAREN expr_list RPAREN .
+
+    END             reduce using rule 39 (procedure_call -> PROCEDURE_NAME LPAREN expr_list RPAREN .)
+    SEMICOLON       reduce using rule 39 (procedure_call -> PROCEDURE_NAME LPAREN expr_list RPAREN .)
+    ELSE            reduce using rule 39 (procedure_call -> PROCEDURE_NAME LPAREN expr_list RPAREN .)
+
+
+state 125
+
+    (16) array -> ARRAY LBRACKET NUMBER . DOUBLEPERIOD NUMBER RBRACKET OF type
+
+    DOUBLEPERIOD    shift and go to state 136
+
+
+state 126
+
+    (43) expr_list -> expr_list COMMA expression .
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    RPAREN          reduce using rule 43 (expr_list -> expr_list COMMA expression .)
+    COMMA           reduce using rule 43 (expr_list -> expr_list COMMA expression .)
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+    EQUALS          shift and go to state 75
+    LESSTHAN        shift and go to state 76
+    GREATERTHAN     shift and go to state 77
+    LESSEQUALS      shift and go to state 78
+    GREATEQUALS     shift and go to state 79
+    LESSGREAT       shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+
+
+state 127
+
+    (30) if_statement -> IF expression THEN statement ELSE . statement
+    (21) statement -> . atribution_statement
+    (22) statement -> . if_statement
+    (23) statement -> . while_statement
+    (24) statement -> . for_statement
+    (25) statement -> . case_statement
+    (26) statement -> . procedure_call
+    (27) statement -> . sub_block
+    (28) statement -> .
+    (29) atribution_statement -> . IDENTIFIER ATRIBUTION expression
+    (30) if_statement -> . IF expression THEN statement ELSE statement
+    (31) if_statement -> . IF expression THEN statement
+    (32) while_statement -> . WHILE expression DO statement
+    (33) for_statement -> . FOR IDENTIFIER ATRIBUTION expression TO expression DO statement
+    (34) for_statement -> . FOR IDENTIFIER ATRIBUTION expression DOWNTO expression DO statement
+    (35) case_statement -> . CASE expression OF case_list END
+    (39) procedure_call -> . PROCEDURE_NAME LPAREN expr_list RPAREN
+    (40) procedure_call -> . IDENTIFIER LPAREN expr_list RPAREN
+    (17) sub_block -> . BEGIN statement_list END
+    (18) sub_block -> . BEGIN END
+
+    ELSE            reduce using rule 28 (statement -> .)
+    END             reduce using rule 28 (statement -> .)
+    SEMICOLON       reduce using rule 28 (statement -> .)
+    IDENTIFIER      shift and go to state 25
+    IF              shift and go to state 26
+    WHILE           shift and go to state 27
+    FOR             shift and go to state 28
+    CASE            shift and go to state 29
+    PROCEDURE_NAME  shift and go to state 30
+    BEGIN           shift and go to state 10
+
+    statement                      shift and go to state 137
+    atribution_statement           shift and go to state 18
+    if_statement                   shift and go to state 19
+    while_statement                shift and go to state 20
+    for_statement                  shift and go to state 21
+    case_statement                 shift and go to state 22
+    procedure_call                 shift and go to state 23
+    sub_block                      shift and go to state 24
+
+state 128
+
+    (66) factor -> IDENTIFIER LBRACKET expression RBRACKET .
+
+    THEN            reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    PLUS            reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    MINUS           reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    TIMES           reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    DIVIDE          reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    DIV             reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    MOD             reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    EQUALS          reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    LESSTHAN        reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    GREATERTHAN     reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    LESSEQUALS      reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    GREATEQUALS     reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    LESSGREAT       reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    AND             reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    OR              reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    DO              reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    OF              reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    END             reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    SEMICOLON       reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    ELSE            reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    RPAREN          reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    COMMA           reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    RBRACKET        reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    TO              reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+    DOWNTO          reduce using rule 66 (factor -> IDENTIFIER LBRACKET expression RBRACKET .)
+
+
+state 129
+
+    (42) function_call -> IDENTIFIER LPAREN expr_list RPAREN .
+
+    THEN            reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    PLUS            reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    MINUS           reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    TIMES           reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    DIVIDE          reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    DIV             reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    MOD             reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    EQUALS          reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    LESSTHAN        reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    GREATERTHAN     reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    LESSEQUALS      reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    GREATEQUALS     reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    LESSGREAT       reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    AND             reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    OR              reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    DO              reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    OF              reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    END             reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    SEMICOLON       reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    ELSE            reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    RPAREN          reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    COMMA           reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    RBRACKET        reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    TO              reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    DOWNTO          reduce using rule 42 (function_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+
+
+state 130
+
+    (41) function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .
+
+    THEN            reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    PLUS            reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    MINUS           reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    TIMES           reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    DIVIDE          reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    DIV             reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    MOD             reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    EQUALS          reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    LESSTHAN        reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    GREATERTHAN     reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    LESSEQUALS      reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    GREATEQUALS     reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    LESSGREAT       reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    AND             reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    OR              reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    DO              reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    OF              reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    END             reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    SEMICOLON       reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    ELSE            reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    RPAREN          reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    COMMA           reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    RBRACKET        reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    TO              reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+    DOWNTO          reduce using rule 41 (function_call -> FUNCTION_NAME LPAREN expr_list RPAREN .)
+
+
+state 131
+
+    (33) for_statement -> FOR IDENTIFIER ATRIBUTION expression TO . expression DO statement
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 138
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 132
+
+    (34) for_statement -> FOR IDENTIFIER ATRIBUTION expression DOWNTO . expression DO statement
+    (46) expression -> . expression PLUS expression
+    (47) expression -> . expression MINUS expression
+    (48) expression -> . expression TIMES expression
+    (49) expression -> . expression DIVIDE expression
+    (50) expression -> . expression DIV expression
+    (51) expression -> . expression MOD expression
+    (52) expression -> . expression EQUALS expression
+    (53) expression -> . expression LESSTHAN expression
+    (54) expression -> . expression GREATERTHAN expression
+    (55) expression -> . expression LESSEQUALS expression
+    (56) expression -> . expression GREATEQUALS expression
+    (57) expression -> . expression LESSGREAT expression
+    (58) expression -> . expression AND expression
+    (59) expression -> . expression OR expression
+    (60) expression -> . NOT expression
+    (61) expression -> . LPAREN expression RPAREN
+    (62) expression -> . factor
+    (63) factor -> . NUMBER
+    (64) factor -> . BOOLEAN_LITERAL
+    (65) factor -> . IDENTIFIER
+    (66) factor -> . IDENTIFIER LBRACKET expression RBRACKET
+    (67) factor -> . CHAR_LITERAL
+    (68) factor -> . STRING_LITERAL
+    (69) factor -> . function_call
+    (41) function_call -> . FUNCTION_NAME LPAREN expr_list RPAREN
+    (42) function_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 40
+    LPAREN          shift and go to state 41
+    NUMBER          shift and go to state 43
+    BOOLEAN_LITERAL shift and go to state 44
+    IDENTIFIER      shift and go to state 45
+    CHAR_LITERAL    shift and go to state 46
+    STRING_LITERAL  shift and go to state 47
+    FUNCTION_NAME   shift and go to state 49
+
+    expression                     shift and go to state 139
+    factor                         shift and go to state 42
+    function_call                  shift and go to state 48
+
+state 133
+
+    (35) case_statement -> CASE expression OF case_list END .
+
+    END             reduce using rule 35 (case_statement -> CASE expression OF case_list END .)
+    SEMICOLON       reduce using rule 35 (case_statement -> CASE expression OF case_list END .)
+    ELSE            reduce using rule 35 (case_statement -> CASE expression OF case_list END .)
+
+
+state 134
+
+    (36) case_list -> case_list SEMICOLON . case_item
+    (38) case_item -> . constant COLON statement
+    (70) constant -> . NUMBER
+    (71) constant -> . BOOLEAN_LITERAL
+    (72) constant -> . IDENTIFIER
+    (73) constant -> . CHAR_LITERAL
+    (74) constant -> . STRING_LITERAL
+
+    NUMBER          shift and go to state 119
+    BOOLEAN_LITERAL shift and go to state 120
+    IDENTIFIER      shift and go to state 121
+    CHAR_LITERAL    shift and go to state 122
+    STRING_LITERAL  shift and go to state 123
+
+    case_item                      shift and go to state 140
+    constant                       shift and go to state 118
+
+state 135
+
+    (38) case_item -> constant COLON . statement
+    (21) statement -> . atribution_statement
+    (22) statement -> . if_statement
+    (23) statement -> . while_statement
+    (24) statement -> . for_statement
+    (25) statement -> . case_statement
+    (26) statement -> . procedure_call
+    (27) statement -> . sub_block
+    (28) statement -> .
+    (29) atribution_statement -> . IDENTIFIER ATRIBUTION expression
+    (30) if_statement -> . IF expression THEN statement ELSE statement
+    (31) if_statement -> . IF expression THEN statement
+    (32) while_statement -> . WHILE expression DO statement
+    (33) for_statement -> . FOR IDENTIFIER ATRIBUTION expression TO expression DO statement
+    (34) for_statement -> . FOR IDENTIFIER ATRIBUTION expression DOWNTO expression DO statement
+    (35) case_statement -> . CASE expression OF case_list END
+    (39) procedure_call -> . PROCEDURE_NAME LPAREN expr_list RPAREN
+    (40) procedure_call -> . IDENTIFIER LPAREN expr_list RPAREN
+    (17) sub_block -> . BEGIN statement_list END
+    (18) sub_block -> . BEGIN END
+
+    END             reduce using rule 28 (statement -> .)
+    SEMICOLON       reduce using rule 28 (statement -> .)
+    IDENTIFIER      shift and go to state 25
+    IF              shift and go to state 26
+    WHILE           shift and go to state 27
+    FOR             shift and go to state 28
+    CASE            shift and go to state 29
+    PROCEDURE_NAME  shift and go to state 30
+    BEGIN           shift and go to state 10
+
+    statement                      shift and go to state 141
+    atribution_statement           shift and go to state 18
+    if_statement                   shift and go to state 19
+    while_statement                shift and go to state 20
+    for_statement                  shift and go to state 21
+    case_statement                 shift and go to state 22
+    procedure_call                 shift and go to state 23
+    sub_block                      shift and go to state 24
+
+state 136
+
+    (16) array -> ARRAY LBRACKET NUMBER DOUBLEPERIOD . NUMBER RBRACKET OF type
+
+    NUMBER          shift and go to state 142
+
+
+state 137
+
+    (30) if_statement -> IF expression THEN statement ELSE statement .
+
+    END             reduce using rule 30 (if_statement -> IF expression THEN statement ELSE statement .)
+    SEMICOLON       reduce using rule 30 (if_statement -> IF expression THEN statement ELSE statement .)
+    ELSE            reduce using rule 30 (if_statement -> IF expression THEN statement ELSE statement .)
+
+
+state 138
+
+    (33) for_statement -> FOR IDENTIFIER ATRIBUTION expression TO expression . DO statement
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    DO              shift and go to state 143
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+    EQUALS          shift and go to state 75
+    LESSTHAN        shift and go to state 76
+    GREATERTHAN     shift and go to state 77
+    LESSEQUALS      shift and go to state 78
+    GREATEQUALS     shift and go to state 79
+    LESSGREAT       shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+
+
+state 139
+
+    (34) for_statement -> FOR IDENTIFIER ATRIBUTION expression DOWNTO expression . DO statement
+    (46) expression -> expression . PLUS expression
+    (47) expression -> expression . MINUS expression
+    (48) expression -> expression . TIMES expression
+    (49) expression -> expression . DIVIDE expression
+    (50) expression -> expression . DIV expression
+    (51) expression -> expression . MOD expression
+    (52) expression -> expression . EQUALS expression
+    (53) expression -> expression . LESSTHAN expression
+    (54) expression -> expression . GREATERTHAN expression
+    (55) expression -> expression . LESSEQUALS expression
+    (56) expression -> expression . GREATEQUALS expression
+    (57) expression -> expression . LESSGREAT expression
+    (58) expression -> expression . AND expression
+    (59) expression -> expression . OR expression
+
+    DO              shift and go to state 144
+    PLUS            shift and go to state 69
+    MINUS           shift and go to state 70
+    TIMES           shift and go to state 71
+    DIVIDE          shift and go to state 72
+    DIV             shift and go to state 73
+    MOD             shift and go to state 74
+    EQUALS          shift and go to state 75
+    LESSTHAN        shift and go to state 76
+    GREATERTHAN     shift and go to state 77
+    LESSEQUALS      shift and go to state 78
+    GREATEQUALS     shift and go to state 79
+    LESSGREAT       shift and go to state 80
+    AND             shift and go to state 81
+    OR              shift and go to state 82
+
+
+state 140
+
+    (36) case_list -> case_list SEMICOLON case_item .
+
+    END             reduce using rule 36 (case_list -> case_list SEMICOLON case_item .)
+    SEMICOLON       reduce using rule 36 (case_list -> case_list SEMICOLON case_item .)
+
+
+state 141
+
+    (38) case_item -> constant COLON statement .
+
+    END             reduce using rule 38 (case_item -> constant COLON statement .)
+    SEMICOLON       reduce using rule 38 (case_item -> constant COLON statement .)
+
+
+state 142
+
+    (16) array -> ARRAY LBRACKET NUMBER DOUBLEPERIOD NUMBER . RBRACKET OF type
+
+    RBRACKET        shift and go to state 145
+
+
+state 143
+
+    (33) for_statement -> FOR IDENTIFIER ATRIBUTION expression TO expression DO . statement
+    (21) statement -> . atribution_statement
+    (22) statement -> . if_statement
+    (23) statement -> . while_statement
+    (24) statement -> . for_statement
+    (25) statement -> . case_statement
+    (26) statement -> . procedure_call
+    (27) statement -> . sub_block
+    (28) statement -> .
+    (29) atribution_statement -> . IDENTIFIER ATRIBUTION expression
+    (30) if_statement -> . IF expression THEN statement ELSE statement
+    (31) if_statement -> . IF expression THEN statement
+    (32) while_statement -> . WHILE expression DO statement
+    (33) for_statement -> . FOR IDENTIFIER ATRIBUTION expression TO expression DO statement
+    (34) for_statement -> . FOR IDENTIFIER ATRIBUTION expression DOWNTO expression DO statement
+    (35) case_statement -> . CASE expression OF case_list END
+    (39) procedure_call -> . PROCEDURE_NAME LPAREN expr_list RPAREN
+    (40) procedure_call -> . IDENTIFIER LPAREN expr_list RPAREN
+    (17) sub_block -> . BEGIN statement_list END
+    (18) sub_block -> . BEGIN END
+
+    ELSE            reduce using rule 28 (statement -> .)
+    END             reduce using rule 28 (statement -> .)
+    SEMICOLON       reduce using rule 28 (statement -> .)
+    IDENTIFIER      shift and go to state 25
+    IF              shift and go to state 26
+    WHILE           shift and go to state 27
+    FOR             shift and go to state 28
+    CASE            shift and go to state 29
+    PROCEDURE_NAME  shift and go to state 30
+    BEGIN           shift and go to state 10
+
+    statement                      shift and go to state 146
+    atribution_statement           shift and go to state 18
+    if_statement                   shift and go to state 19
+    while_statement                shift and go to state 20
+    for_statement                  shift and go to state 21
+    case_statement                 shift and go to state 22
+    procedure_call                 shift and go to state 23
+    sub_block                      shift and go to state 24
+
+state 144
+
+    (34) for_statement -> FOR IDENTIFIER ATRIBUTION expression DOWNTO expression DO . statement
+    (21) statement -> . atribution_statement
+    (22) statement -> . if_statement
+    (23) statement -> . while_statement
+    (24) statement -> . for_statement
+    (25) statement -> . case_statement
+    (26) statement -> . procedure_call
+    (27) statement -> . sub_block
+    (28) statement -> .
+    (29) atribution_statement -> . IDENTIFIER ATRIBUTION expression
+    (30) if_statement -> . IF expression THEN statement ELSE statement
+    (31) if_statement -> . IF expression THEN statement
+    (32) while_statement -> . WHILE expression DO statement
+    (33) for_statement -> . FOR IDENTIFIER ATRIBUTION expression TO expression DO statement
+    (34) for_statement -> . FOR IDENTIFIER ATRIBUTION expression DOWNTO expression DO statement
+    (35) case_statement -> . CASE expression OF case_list END
+    (39) procedure_call -> . PROCEDURE_NAME LPAREN expr_list RPAREN
+    (40) procedure_call -> . IDENTIFIER LPAREN expr_list RPAREN
+    (17) sub_block -> . BEGIN statement_list END
+    (18) sub_block -> . BEGIN END
+
+    ELSE            reduce using rule 28 (statement -> .)
+    END             reduce using rule 28 (statement -> .)
+    SEMICOLON       reduce using rule 28 (statement -> .)
+    IDENTIFIER      shift and go to state 25
+    IF              shift and go to state 26
+    WHILE           shift and go to state 27
+    FOR             shift and go to state 28
+    CASE            shift and go to state 29
+    PROCEDURE_NAME  shift and go to state 30
+    BEGIN           shift and go to state 10
+
+    statement                      shift and go to state 147
+    atribution_statement           shift and go to state 18
+    if_statement                   shift and go to state 19
+    while_statement                shift and go to state 20
+    for_statement                  shift and go to state 21
+    case_statement                 shift and go to state 22
+    procedure_call                 shift and go to state 23
+    sub_block                      shift and go to state 24
+
+state 145
+
+    (16) array -> ARRAY LBRACKET NUMBER DOUBLEPERIOD NUMBER RBRACKET . OF type
+
+    OF              shift and go to state 148
+
+
+state 146
+
+    (33) for_statement -> FOR IDENTIFIER ATRIBUTION expression TO expression DO statement .
+
+    END             reduce using rule 33 (for_statement -> FOR IDENTIFIER ATRIBUTION expression TO expression DO statement .)
+    SEMICOLON       reduce using rule 33 (for_statement -> FOR IDENTIFIER ATRIBUTION expression TO expression DO statement .)
+    ELSE            reduce using rule 33 (for_statement -> FOR IDENTIFIER ATRIBUTION expression TO expression DO statement .)
+
+
+state 147
+
+    (34) for_statement -> FOR IDENTIFIER ATRIBUTION expression DOWNTO expression DO statement .
+
+    END             reduce using rule 34 (for_statement -> FOR IDENTIFIER ATRIBUTION expression DOWNTO expression DO statement .)
+    SEMICOLON       reduce using rule 34 (for_statement -> FOR IDENTIFIER ATRIBUTION expression DOWNTO expression DO statement .)
+    ELSE            reduce using rule 34 (for_statement -> FOR IDENTIFIER ATRIBUTION expression DOWNTO expression DO statement .)
+
+
+state 148
+
+    (16) array -> ARRAY LBRACKET NUMBER DOUBLEPERIOD NUMBER RBRACKET OF . type
+    (11) type -> . INTEGER
+    (12) type -> . BOOLEAN
+    (13) type -> . REAL
+    (14) type -> . STRING
+    (15) type -> . CHAR
+
+    INTEGER         shift and go to state 57
+    BOOLEAN         shift and go to state 58
+    REAL            shift and go to state 59
+    STRING          shift and go to state 60
+    CHAR            shift and go to state 61
+
+    type                           shift and go to state 149
+
+state 149
+
+    (16) array -> ARRAY LBRACKET NUMBER DOUBLEPERIOD NUMBER RBRACKET OF type .
+
+    SEMICOLON       reduce using rule 16 (array -> ARRAY LBRACKET NUMBER DOUBLEPERIOD NUMBER RBRACKET OF type .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for END in state 10 resolved as shift
